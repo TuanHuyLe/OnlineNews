@@ -15,16 +15,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/admin', 'AdminController@loginAdmin')->name('login');
-Route::get('/logout', 'AdminController@logout')->name('logout');
 Route::post('/admin', 'AdminController@authenticate')->name('authenticate');
+Route::get('/logout', 'AdminController@logout')->name('logout');
 
-Route::get('/', function () {
-    return view('welcome');
+Route::prefix('tintuconline')->group(function () {
+    Route::get('/home', [
+        'as' => 'home',
+        'uses' => 'HomeController@index'
+    ]);
 });
 
 Route::prefix('admin')->group(function () {
     Route::get('/home', [
-        'as'=>'admin.home',
+        'as' => 'admin.home',
         'uses' => 'AdminController@index'
     ])->middleware('auth');
 });

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 class AdminController extends Controller
 {
     public function index(){
-        return view('admin.home');
+        return view('admin.admin');
     }
 
     public function loginAdmin()
@@ -21,7 +21,7 @@ class AdminController extends Controller
 
     public function logout(){
         Auth::logout();
-        return redirect()->route('login');
+        return redirect()->route('home');
     }
 
     public function authenticate(Request $request)

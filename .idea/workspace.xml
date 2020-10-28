@@ -9,7 +9,9 @@
   </component>
   <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution />
+    <execution>
+      <executable path="composer" />
+    </execution>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -17,6 +19,9 @@
         <option value="composer.json" />
       </list>
     </option>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/routes/web.php" root0="FORCE_HIGHLIGHTING" root1="SKIP_INSPECTION" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -119,6 +124,14 @@
       <path value="$PROJECT_DIR$/vendor/nesbot/carbon" />
       <path value="$PROJECT_DIR$/vendor/hamcrest/hamcrest-php" />
       <path value="$PROJECT_DIR$/vendor/swiftmailer/swiftmailer" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/collections" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/annotations" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/common" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/reflection" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/event-manager" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/persistence" />
     </include_path>
   </component>
   <component name="ProjectId" id="1jVDz0Vkcm9qCMz3JUR3XsSpog5" />
@@ -132,6 +145,12 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\TinTucOnline\resources\views\home" />
+      <recent name="C:\xampp\htdocs\TinTucOnline\public" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -147,7 +166,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1603880625114</updated>
-      <workItem from="1603880627226" duration="6964000" />
+      <workItem from="1603880627226" duration="16240000" />
     </task>
     <servers />
   </component>
@@ -159,10 +178,18 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="493" y="263" key="#Composer/0.0.1366.768@0.0.1366.768" timestamp="1603880770012" />
+    <state x="404" y="186" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1603894850983">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="404" y="186" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.768@0.0.1366.768" timestamp="1603894850983" />
     <state x="413" y="139" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1603885155383">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="413" y="139" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.768@0.0.1366.768" timestamp="1603885155383" />
+    <state x="459" y="296" key="ComposerInitDialogKey" timestamp="1603892607560">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="459" y="296" key="ComposerInitDialogKey/0.0.1366.768@0.0.1366.768" timestamp="1603892607560" />
     <state width="1323" height="306" key="GridCell.Tab.0.bottom" timestamp="1603880696875">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
@@ -179,9 +206,9 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state width="1323" height="306" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1603880696875" />
-    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1603887655930">
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1603897482676">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1366.768@0.0.1366.768" timestamp="1603887655930" />
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1366.768@0.0.1366.768" timestamp="1603897482676" />
   </component>
 </project>
