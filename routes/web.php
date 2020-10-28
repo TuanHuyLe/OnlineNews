@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\authen;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +16,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/admin', 'AdminController@loginAdmin')->name('login');
 Route::get('/logout', 'AdminController@logout')->name('logout');
+Route::post('/admin', 'AdminController@authenticate')->name('authenticate');
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::prefix('admin')->group(function () {
+    Route::get('/home', [
+        'as'=>'admin.home',
+        'uses' => 'AdminController@index'
+    ])->middleware('auth');
 });
