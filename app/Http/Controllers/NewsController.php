@@ -15,5 +15,15 @@ class NewsController extends Controller
         $this->news = $news;
     }
 
+    public function index($id){
+        $news = $this->news->find($id);
+        return view('home.news', compact('news'));
+    }
 
+    public function search(Request $request){
+        $key = $request['key'];
+        $newsItem = News::query()->where('title','like', '%'.$key.'%')
+            ->paginate(5);
+        return view('home.home', compact('newsItem', 'key'));
+    }
 }

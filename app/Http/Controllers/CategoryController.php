@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\News;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -14,12 +15,9 @@ class CategoryController extends Controller
         $this->category = $category;
     }
 
-//    public function getAll()
-//    {
-//        $categories = $this->category->get();
-//        return response()->json([
-//            'code' => 200,
-//            'categories' => $categories
-//        ], 200);
-//    }
+    public function index($categoryCode){
+        $newsCategory = $this->category->where('code', $categoryCode)->first();
+        $newsItem = News::query()->where('category_id', $newsCategory->id)->latest()->paginate(5);
+        return view('home.home', compact('newsItem', 'newsCategory'));
+    }
 }

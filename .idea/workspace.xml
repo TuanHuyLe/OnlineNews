@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a13c0cf5-099b-43b3-98de-852d92661831" name="Default Changelist" comment="" />
+    <list default="true" id="a13c0cf5-099b-43b3-98de-852d92661831" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/NewsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/NewsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/partials/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/partials/rightmenu.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/rightmenu.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution>
       <executable path="composer" />
@@ -19,6 +27,9 @@
         <option value="composer.json" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/routes/web.php" root0="FORCE_HIGHLIGHTING" root1="SKIP_INSPECTION" />
@@ -135,6 +146,9 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1jVDz0Vkcm9qCMz3JUR3XsSpog5" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -166,7 +180,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1603880625114</updated>
-      <workItem from="1603880627226" duration="16240000" />
+      <workItem from="1603880627226" duration="16636000" />
+      <workItem from="1604051511806" duration="182000" />
+      <workItem from="1604064575551" duration="7622000" />
     </task>
     <servers />
   </component>
@@ -190,22 +206,22 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="459" y="296" key="ComposerInitDialogKey/0.0.1366.768@0.0.1366.768" timestamp="1603892607560" />
-    <state width="1323" height="306" key="GridCell.Tab.0.bottom" timestamp="1603880696875">
+    <state width="1323" height="306" key="GridCell.Tab.0.bottom" timestamp="1603898271958">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1323" height="306" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1603880696875" />
-    <state width="1323" height="306" key="GridCell.Tab.0.center" timestamp="1603880696875">
+    <state width="1323" height="306" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1603898271958" />
+    <state width="1323" height="306" key="GridCell.Tab.0.center" timestamp="1603898271958">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1323" height="306" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1603880696875" />
-    <state width="1323" height="306" key="GridCell.Tab.0.left" timestamp="1603880696874">
+    <state width="1323" height="306" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1603898271958" />
+    <state width="1323" height="306" key="GridCell.Tab.0.left" timestamp="1603898271958">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1323" height="306" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1603880696874" />
-    <state width="1323" height="306" key="GridCell.Tab.0.right" timestamp="1603880696875">
+    <state width="1323" height="306" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1603898271958" />
+    <state width="1323" height="306" key="GridCell.Tab.0.right" timestamp="1603898271958">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1323" height="306" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1603880696875" />
+    <state width="1323" height="306" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1603898271958" />
     <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1603897482676">
       <screen x="0" y="0" width="1366" height="768" />
     </state>

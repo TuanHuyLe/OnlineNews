@@ -23,6 +23,18 @@ Route::prefix('tintuconline')->group(function () {
         'as' => 'home',
         'uses' => 'HomeController@index'
     ]);
+    Route::get('/home/news{id}', [
+        'as' => 'home.news',
+        'uses' => 'NewsController@index'
+    ]);
+    Route::get('/home/search', [
+        'as' => 'home.search',
+        'uses' => 'NewsController@search'
+    ]);
+    Route::get('/home/{categoryCode}', [
+        'as' => 'home.newscategory',
+        'uses' => 'CategoryController@index'
+    ]);
 });
 
 Route::prefix('admin')->group(function () {
