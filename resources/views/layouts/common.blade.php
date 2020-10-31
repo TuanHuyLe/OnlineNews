@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>@yield("title")</title>
+    <title>@yield('title')</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{asset('blog_home/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -21,7 +21,7 @@
 <body>
 
 <!-- Navigation -->
-@include('partials.header')
+@include('partials.home.header')
 
 <!-- Page Content -->
 <div class="container">
@@ -32,7 +32,7 @@
         @yield('content')
 
         <!-- Sidebar Widgets Column -->
-        @include('partials.rightmenu')
+        @include('partials.home.rightmenu')
 
     </div>
     <!-- /.row -->
@@ -41,7 +41,7 @@
 <!-- /.container -->
 
 <!-- Footer -->
-@include('partials.footer')
+@include('partials.home.footer')
 
 <!-- Bootstrap core JavaScript -->
 <script src="{{asset('blog_home/vendor/jquery/jquery.min.js')}}"></script>

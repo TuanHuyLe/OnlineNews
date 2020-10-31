@@ -26,7 +26,7 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer(
-            'partials.rightmenu', CategoryViewComposer::class
+            'partials.home.rightmenu', CategoryViewComposer::class
         );
     }
 }
