@@ -1,15 +1,15 @@
 @extends('layouts.common')
-@section('title', 'Trang chủ')
+@section('title', 'Tin tức online')
 
 @section('content')
     <div class="col-md-8">
 
     @if(isset($key))
-        @include('partials.contentheader', ['name' => 'Tìm kiếm:', 'key' => $key])
+        @include('partials.home.contentheader', ['name' => 'Tìm kiếm:', 'key' => $key])
     @elseif(isset($newsCategory))
-        @include('partials.contentheader', ['name' => 'Thể loại:', 'key' => $newsCategory->name])
+        @include('partials.home.contentheader', ['name' => 'Thể loại:', 'key' => $newsCategory->name])
     @else
-        @include('partials.contentheader', ['name' => 'Trang chủ', 'key' => ''])
+        @include('partials.home.contentheader', ['name' => 'Trang chủ', 'key' => ''])
     @endif
     <!-- Blog Post -->
     @foreach($newsItem as $item)
