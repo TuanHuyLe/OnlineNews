@@ -20,7 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a13c0cf5-099b-43b3-98de-852d92661831" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Role.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Role.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +198,8 @@
       <updated>1603880625114</updated>
       <workItem from="1603880627226" duration="16636000" />
       <workItem from="1604051511806" duration="182000" />
-      <workItem from="1604064575551" duration="11221000" />
+      <workItem from="1604064575551" duration="11706000" />
+      <workItem from="1604384347579" duration="1142000" />
     </task>
     <servers />
   </component>
@@ -212,6 +216,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="493" y="263" key="#Composer" timestamp="1603880770012">
