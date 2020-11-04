@@ -14,11 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/admin', 'AdminController@loginAdmin')->name('login');
-Route::post('/admin', 'AdminController@authenticate')->name('authenticate');
-Route::get('/logout', 'AdminController@logout')->name('logout');
+Route::get('/admin', 'Admin\AdminController@loginAdmin')->name('login');
+Route::post('/admin', 'Admin\AdminController@authenticate')->name('authenticate');
+Route::get('/logout', 'Admin\AdminController@logout')->name('logout');
 
-Route::prefix('tintuconline')->group(function () {
+Route::prefix('tintuconline')->namespace('Web')->group(function () {
     Route::get('/home', [
         'as' => 'home',
         'uses' => 'HomeController@index'
@@ -37,9 +37,14 @@ Route::prefix('tintuconline')->group(function () {
     ]);
 });
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->namespace('Admin')->group(function () {
     Route::get('/home', [
         'as' => 'admin.home',
         'uses' => 'AdminController@index'
     ])->middleware('auth');
+
+    Route::get('/categories', [
+       'as' => 'categories.index',
+       'uses' => 'AdminCategoryController@index'
+    ]);
 });
