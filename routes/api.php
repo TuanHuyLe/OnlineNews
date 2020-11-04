@@ -17,3 +17,23 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+/**
+ * Define api admin
+ * api/v1/[entity]
+ * CreatedBy: LTQUAN (04/11/2020)
+ */
+Route::middleware('api')->prefix('v1')->namespace('Api\Admin')->group(function () {
+    Route::prefix('categories')->group(function () {
+        Route::get('/', [
+            'as' => 'categories.read',
+            'uses' => 'CategoryApi@index'
+        ]);
+
+        Route::post('/', [
+            'as' => 'categories.create',
+            'uses' => 'CategoryApi@store'
+        ]);
+    });
+});
