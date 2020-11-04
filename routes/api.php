@@ -31,9 +31,24 @@ Route::middleware('api')->prefix('v1')->namespace('Api\Admin')->group(function (
             'uses' => 'CategoryApi@index'
         ]);
 
+        Route::get('/{id}', [
+            'as' => 'categories.readbyid',
+            'uses' => 'CategoryApi@show'
+        ]);
+
         Route::post('/', [
             'as' => 'categories.create',
             'uses' => 'CategoryApi@store'
+        ]);
+
+        Route::put('/', [
+            'as' => 'categories.update',
+            'uses' => 'CategoryApi@update'
+        ]);
+
+        Route::delete('/{id}', [
+            'as' => 'categories.delete',
+            'uses' => 'CategoryApi@destroy'
         ]);
     });
 });
