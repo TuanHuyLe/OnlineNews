@@ -9,20 +9,20 @@ use Illuminate\Support\Facades\Auth;
 class AdminController extends Controller
 {
     public function index(){
-        return view('admin.home.index');
+        return view('admin.web.index');
     }
 
     public function loginAdmin()
     {
         if (auth()->check()) {
-            return redirect()->route('admin.home');
+            return redirect()->route('admin.web');
         }
         return view('login');
     }
 
     public function logout(){
         Auth::logout();
-        return redirect()->route('home');
+        return redirect()->route('web');
     }
 
     public function authenticate(Request $request)
@@ -32,7 +32,7 @@ class AdminController extends Controller
             'email' => $request->email,
             'password' => $request->password
         ], $remember)) {
-            return redirect()->route('admin.home');
+            return redirect()->route('admin.web');
         }
         return view('login');
     }
