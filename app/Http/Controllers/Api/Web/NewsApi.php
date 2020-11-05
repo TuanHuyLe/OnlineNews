@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Web;
 
+use App\Category;
 use App\Http\Controllers\Controller;
 use App\News;
 use Illuminate\Http\Request;
@@ -30,22 +31,31 @@ class NewsApi extends Controller
     {
         $pageIndex = $request['page'];
         $limit = $request['limit'];
+        $total = $this->news->count('id');
+        $categoryNews = null;
         if (!isset($pageIndex) || !isset($limit)) {
             $news = $this->news->query()->select('id', 'title', 'image', 'created_at', 'shortDescription')
                 ->orderByDesc('created_at')->get();
         } else if (!is_numeric($pageIndex) || !is_numeric($limit)) {
             return response(['errorCode' => 400, 'message' => 'Data invalid!', 'time' => now()], 400);
         } else {
-            $news = $this->news->query()->select('id', 'title', 'image', 'created_at', 'shortDescription')
-                ->skip(($request['page'] - 1) * $request['limit'])
+            $news = $this->news->query()->select('id', 'title', 'image', 'created_at', 'shortDescription');
+            if (isset($request['category']) && $request['category'] !== 'all') {
+                $categoryNews = Category::where('code', $request['category'])->first();
+                if (isset($categoryNews)) {
+                    $news = $news->where('category_id', $categoryNews->id);
+                    $total = $news->count('id');
+                }
+            }
+            $news = $news->skip(($request['page'] - 1) * $request['limit'])
                 ->take($request['limit'])
                 ->orderBy('created_at', 'desc')->get();
         }
-        $total = $this->news->query()->count('id');
         return response()->json([
             'status' => 200,
             'data' => $news,
-            'total' => $total
+            'total' => $total,
+            'other' => $categoryNews
         ], 200);
     }
 

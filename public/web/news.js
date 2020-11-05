@@ -1,14 +1,18 @@
 const newsParams = {
     page: 1,
-    limit: 5,
-    category: ''
+    limit: 2,
+    category: 'all',
+    content_header: 'Trang chủ'
 }
 
 const news = {
     init: function () {
         news.loadData();
+        news.event();
     },
     loadData: function () {
+        let url = location.pathname;
+        newsParams.category = url.replace(url.split(/\w+-\w+/)[0], '');
         $.ajax({
             url: 'http://localhost:8000/api/v1/news',
             data: {
@@ -40,8 +44,14 @@ const news = {
                             </div>
                         `;
                     });
-                    console.log(res.total);
                     $('.root').html(html);
+                    if (res.other != null) {
+                        newsParams.content_header = 'Thể loại: ' + res.other.name;
+                    } else {
+                        newsParams.content_header = "Trang chủ";
+                        sessionStorage.removeItem('url');
+                    }
+                    $('#content-header').html(newsParams.content_header);
                     news.paging(res.total, () => {
                         news.loadData();
                     });
@@ -60,6 +70,25 @@ const news = {
                 window.scrollTo(0, 0);
             }
         });
+    },
+    event: function () {
+        $('.category-news').off('click').on('click', function (e) {
+            e.preventDefault();
+            $('#pagination').twbsPagination('destroy');
+            let code = $(this).data('code');
+            // Check browser support
+            if (typeof (Storage) !== "undefined") {
+                // Store
+                sessionStorage.setItem("url", code);
+            } else {
+                console.log("Sorry, your browser does not support Web Storage...");
+            }
+            history.pushState(null, null, sessionStorage.getItem("url"));
+            newsParams.page = 1;
+            newsParams.category = code;
+            news.loadData();
+            window.scrollTo(0, 0);
+        })
     }
 }
 
