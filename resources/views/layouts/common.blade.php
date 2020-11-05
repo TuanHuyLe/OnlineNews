@@ -46,6 +46,7 @@
 <!-- Bootstrap core JavaScript -->
 <script src="{{asset('blog_home/vendor/jquery/jquery.min.js')}}"></script>
 <script src="{{asset('blog_home/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('web/plugins/twbsPagination.min.js')}}"></script>
 <script src="{{asset('web/news.js')}}"></script>
 </body>
 

@@ -1,3 +1,2 @@
-<h1 class="my-4">{{$name}}
-    <small>{{$key}}</small>
+<h1 class="my-4">{{$name}} {{$key}}
 </h1>

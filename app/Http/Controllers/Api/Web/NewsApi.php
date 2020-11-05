@@ -31,15 +31,22 @@ class NewsApi extends Controller
         $pageIndex = $request['page'];
         $limit = $request['limit'];
         if (!isset($pageIndex) || !isset($limit)) {
-            $news = $this->news->all('id', 'title', 'image', 'created_at', 'shortDescription');
+            $news = $this->news->query()->select('id', 'title', 'image', 'created_at', 'shortDescription')
+                ->orderByDesc('created_at')->get();
         } else if (!is_numeric($pageIndex) || !is_numeric($limit)) {
             return response(['errorCode' => 400, 'message' => 'Data invalid!', 'time' => now()], 400);
         } else {
-            $news = $this->news->all('id', 'title', 'image', 'created_at', 'shortDescription')
+            $news = $this->news->query()->select('id', 'title', 'image', 'created_at', 'shortDescription')
                 ->skip(($request['page'] - 1) * $request['limit'])
-                ->take($request['limit']);
+                ->take($request['limit'])
+                ->orderBy('created_at', 'desc')->get();
         }
-        return response()->json($news, 200);
+        $total = $this->news->query()->count('id');
+        return response()->json([
+            'status' => 200,
+            'data' => $news,
+            'total' => $total
+        ], 200);
     }
 
     /**

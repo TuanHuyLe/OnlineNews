@@ -15,7 +15,7 @@
         <div class="root"></div>
         <!-- Pagination -->
         <div class="col-md-12">
-            {{$newsItem->links()}}
+            <ul id="pagination" class="pagination-sm"></ul>
         </div>
 
     </div>
