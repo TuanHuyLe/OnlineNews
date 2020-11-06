@@ -25,16 +25,7 @@ class AdminCategoryController extends Controller
      * Author: LTQUAN (03/11/2020)
      */
     public function index(Request $request){
-        $categories = null;
-        $categoryName = null;
-        if ($request->has('category_name')){
-            $categoryName = $request->category_name;
-            $categories = $this->category->where('name', 'like', '%'.$categoryName.'%')->paginate(2);
-            $categories->appends(['category_name' => $categoryName]);
-        }else{
-            $categories = $this->category->paginate(5);
-        }
-        return view('admin.category.index', compact('categories', 'categoryName'));
+        return view('admin.category.index');
     }
 
 }
