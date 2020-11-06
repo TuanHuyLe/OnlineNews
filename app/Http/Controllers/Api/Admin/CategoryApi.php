@@ -28,17 +28,19 @@ class CategoryApi extends Controller
     public function index(Request $request)
     {
         $pageIndex = $request['page'];
-        $limit = $request['limit'];
+        $limit = $request['pageSize'];
+        $totalRecord = $this->category->all()->count();
         if (!isset($pageIndex) || !isset($limit))
-            $categories = $this->category->all('id', 'name');
+            $categories = $this->category->all('id', 'name', 'created_at', 'updated_at');
         else if (!is_numeric($pageIndex) || !is_numeric($limit))
             return response(['errorCode' => 400, 'message' => 'Data invalid!', 'time' => now()], 400);
         else {
-            $categories = $this->category->all('id', 'name')
-                ->skip(($request['page'] - 1) * $request['limit'])
-                ->take($request['limit']);
+            $categories = $this->category->all('id', 'name', 'created_at', 'updated_at')
+                ->skip(($pageIndex - 1) * $limit)
+                ->take($limit)
+                ->values();
         }
-        return response()->json($categories, 200);
+        return response()->json(['page'=>$pageIndex, 'pageSize'=>$limit, 'totalRecord'=>$totalRecord, 'datas'=>$categories], 200);
     }
 
     /**

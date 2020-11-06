@@ -19,41 +19,7 @@
     <link href="{{ asset('blog_admin/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css">
     <link href="{{ asset('blog_admin/libs/toastr/build/toastr.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('blog_admin/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css">
-    <style>
-        .card-header{
-            background-color: #ffffff;
-        }
-        th, td{
-            text-align: center;
-        }
-        td{
-            padding: 0.2rem !important;
-            vertical-align: unset !important;
-        }
-    </style>
-    <style>
-        /* width */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        /* Track */
-        ::-webkit-scrollbar-track {
-            box-shadow: inset 0 0 5px grey;
-            border-radius: 10px;
-        }
-
-        /* Handle */
-        ::-webkit-scrollbar-thumb {
-            background: #bbb;
-            border-radius: 10px;
-        }
-
-        /* Handle on hover */
-        ::-webkit-scrollbar-thumb:hover {
-            background: #b30000;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/admin/main.css') }}">
     @yield('css', false)
 </head>
 
@@ -61,6 +27,9 @@
 
 <!-- Begin page -->
 <div id="layout-wrapper">
+
+    <img id="loading" src="{{ asset('blog_admin/images/loadding.gif')  }}" alt="loadding">
+    <div id="loading-display"></div>
 
     @include('partials.admin.header')
     @include('partials.admin.slidebar')
@@ -73,7 +42,7 @@
 
             </div>
         </div>
-        @include('partials.admin.footer')
+{{--        @include('partials.admin.footer')--}}
 
     </div>
 
@@ -87,10 +56,6 @@
 <script src="{{ asset('blog_admin/libs/node-waves/waves.min.js') }}"></script>
 <script src="{{ asset('blog_admin/libs/toastr/build/toastr.min.js') }}"></script>
 <script src="{{ asset('blog_admin/libs/sweetalert2/sweetalert2.min.js') }}"></script>
-{{--<script src="{{ asset('blog_admin/libs/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>--}}
-
-{{--<script src="{{ asset('blog_admin/js/pages/form-element.init.js') }}"></script>--}}
-
 <script src="{{ asset('blog_admin/js/app.js') }}"></script>
 @yield('script', false)
 
