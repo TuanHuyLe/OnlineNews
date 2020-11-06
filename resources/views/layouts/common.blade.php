@@ -21,7 +21,7 @@
 <body>
 
 <!-- Navigation -->
-@include('partials.home.header')
+@include('partials.web.header')
 
 <!-- Page Content -->
 <div class="container">
@@ -32,7 +32,7 @@
         @yield('content')
 
         <!-- Sidebar Widgets Column -->
-        @include('partials.home.rightmenu')
+        @include('partials.web.right_menu')
 
     </div>
     <!-- /.row -->
@@ -41,12 +41,13 @@
 <!-- /.container -->
 
 <!-- Footer -->
-@include('partials.home.footer')
+@include('partials.web.footer')
 
 <!-- Bootstrap core JavaScript -->
 <script src="{{asset('blog_home/vendor/jquery/jquery.min.js')}}"></script>
 <script src="{{asset('blog_home/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-
+<script src="{{asset('web/plugins/twbsPagination.min.js')}}"></script>
+<script src="{{asset('web/news.js')}}"></script>
 </body>
 
 </html>

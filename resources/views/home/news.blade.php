@@ -4,9 +4,8 @@
 @section('content')
     <div class="col-lg-8">
 
-    @include('partials.home.contentheader', ['name' => 'Bài đăng', 'key' => ''])
-
-    <!-- Title -->
+        <h1 class="my-4" id="content-header"></h1>
+        <!-- Title -->
         <h1 class="mt-4">{{$news->title}}</h1>
 
         <hr>
