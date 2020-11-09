@@ -48,6 +48,7 @@
 <script src="{{asset('blog_home/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('web/plugins/twbsPagination.min.js')}}"></script>
 <script src="{{asset('web/news.js')}}"></script>
+<script src="{{asset('web/readMoreNews.js')}}"></script>
 </body>
 
 </html>

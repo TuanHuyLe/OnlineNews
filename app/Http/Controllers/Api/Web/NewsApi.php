@@ -72,13 +72,20 @@ class NewsApi extends Controller
 
     /**
      * Display the specified resource.
-     *
+     * CreatedBy LHTUAN (06/11/2020)
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        $news = News::query()->get(['id', 'title', 'content', 'created_at', 'image'])->find($id);
+        if (!isset($news)) {
+            return response(['errorCode' => 404, 'message' => 'User Id not found!', 'time' => now()], 404);
+        }
+        return response()->json([
+            'status' => 200,
+            'data' => $news
+        ], 200);
     }
 
     /**
