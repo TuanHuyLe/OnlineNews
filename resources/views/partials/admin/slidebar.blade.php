@@ -23,7 +23,7 @@
                 <li class="menu-title">Apps</li>
 
                 <li>
-                    <a href="#" class=" waves-effect">
+                    <a href="{{ route('categories.index') }}" class=" waves-effect">
                         <i class="nav-icon far fa-list-alt"></i>
                         <span>Quản lý thể loại</span>
                     </a>

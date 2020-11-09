@@ -1,0 +1,67 @@
+.card-header{
+    background-color: #ffffff;
+}
+th, td{
+    text-align: center;
+}
+td{
+    padding: 0.25rem !important;
+    vertical-align: unset !important;
+}
+#loading{
+    width: 100px;
+    position: absolute;
+    top: calc(50% - 50px);
+    left: calc(50% - 50px);
+    display: none;
+    z-index: 10000;
+}
+#loading-display{
+    position: absolute;
+    background-color: #bbb;
+    opacity: .4;
+    z-index: 9999;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: none;
+}
+#page-size{
+    border-color: #74788d;
+    font-size: .8125rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border-radius: .25rem;
+    margin-left: 4px;
+}
+.right-paging{
+    position: absolute;
+    top:21px;
+    right: 15px;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #bbb;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #b30000;
+}
