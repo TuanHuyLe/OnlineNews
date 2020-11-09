@@ -11,8 +11,16 @@ const news = {
         news.event();
     },
     loadData: function () {
-        let url = location.pathname;
-        newsParams.category = url.replace(url.split(/\w+-\w+/)[0], '');
+        let pathname = location.pathname;
+        newsParams.category = pathname.replace(pathname.split(/\w+-\w+/)[0], '');
+
+        // let url = new URL(location.href);
+        // if (url.searchParams.has('page')) {
+        //     newsParams.page = url.searchParams.get('page');
+        // } else {
+        //     newsParams.page = 1;
+        // }
+
         $.ajax({
             url: 'http://localhost:8000/api/v1/news',
             data: {
@@ -35,7 +43,7 @@ const news = {
                                 <div class="card-body">
                                     <h2 class="card-title">${value.title}</h2>
                                     <div>${value.shortDescription}</div>
-                                    <a href="/tintuconline/home/news${value.id}" class="mt-2 btn btn-primary">Đọc thêm
+                                    <a href="/tintuconline/home/news${value.id}" class="read-more mt-2 btn btn-primary">Đọc thêm
                                         &rarr;</a>
                                 </div>
                                 <div class="card-footer text-muted">
@@ -48,13 +56,16 @@ const news = {
                     if (res.other != null) {
                         newsParams.content_header = 'Thể loại: ' + res.other.name;
                     } else {
-                        newsParams.content_header = "Trang chủ";
-                        sessionStorage.removeItem('url');
+                        newsParams.content_header = 'Trang chủ';
                     }
                     $('#content-header').html(newsParams.content_header);
-                    news.paging(res.total, () => {
-                        news.loadData();
-                    });
+                    if (res.total / newsParams.limit > 1) {
+                        news.paging(res.total, () => {
+                            news.loadData();
+                        });
+                    } else {
+                        $('#pagination').remove('li');
+                    }
                 }
             }
         });
@@ -66,6 +77,8 @@ const news = {
             visiblePages: 5,
             onPageClick: (event, page) => {
                 newsParams.page = page;
+                sessionStorage.setItem('page', page);
+                history.pushState(null, null, '?page=' + page);
                 setTimeout(callback, 100);
                 window.scrollTo(0, 0);
             }
@@ -76,20 +89,28 @@ const news = {
             e.preventDefault();
             $('#pagination').twbsPagination('destroy');
             let code = $(this).data('code');
-            // Check browser support
-            if (typeof (Storage) !== "undefined") {
-                // Store
-                sessionStorage.setItem("url", code);
-            } else {
-                console.log("Sorry, your browser does not support Web Storage...");
+            if (checkBrowserSupportSessionStorage()) {
+                sessionStorage.setItem('url', code);
             }
-            history.pushState(null, null, sessionStorage.getItem("url"));
-            newsParams.page = 1;
+            history.pushState(null, null, sessionStorage.getItem('url'));
             newsParams.category = code;
             news.loadData();
             window.scrollTo(0, 0);
         })
     }
+}
+
+/**
+ * Check browser support session storage
+ * CreatedBy LHTUAN (05/11/2020)
+ * @returns {boolean}
+ */
+const checkBrowserSupportSessionStorage = () => {
+    if (typeof (Storage) !== 'undefined') {
+        return true;
+    }
+    console.log('Sorry, your browser does not support Web Storage...');
+    return false;
 }
 
 $(document).ready(function () {
