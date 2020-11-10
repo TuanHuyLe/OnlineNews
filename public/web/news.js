@@ -1,24 +1,4 @@
-//#region Constant
-/**
- * Attributes for pageable
- * @type {{limit: number, page: number}}
- * Author: LHTUAN (05/11/2020)
- */
-const pageableParams = {
-    page: 1,
-    limit: 2
-}
-
-/**
- * Parameter for call ajax in home page news
- * @type {{content_header: string, category: string}}
- * Author: LHTUAN (05/11/2020)
- */
-const newsParams = {
-    category: 'all',
-    content_header: 'Trang chủ'
-}
-
+//#region Handling
 /**
  * Check browser support session storage
  * Author: LHTUAN (05/11/2020)
@@ -31,13 +11,11 @@ const checkBrowserSupportSessionStorage = () => {
     console.log('Sorry, your browser does not support Web Storage...');
     return false;
 }
-//#endregion Constant
 
-//#region Handling
 /**
- * Handling home page call API using ajax jquery
+ * #Handling home page call API using ajax jquery
  * @type {{init: news.init, loadData: news.loadData, paging: news.paging, event: news.event}}
- * Author: LHTUAN (05/11/2020)
+ * @Author LHTUAN (05/11/2020)
  */
 const news = {
     /**
@@ -50,27 +28,21 @@ const news = {
 
     /**
      * load data show on home page
-     * Author: LHTUAN (05/11/2020)
+     * @Author LHTUAN (05/11/2020)
      */
     loadData: function () {
-        // get category in pathName
+        // get code in pathName
         let pathname = location.pathname;
-        newsParams.category = pathname.replace(pathname.split(/\w+-\w+/)[0], '');
-
-        // let url = new URL(location.href);
-        // if (url.searchParams.has('page')) {
-        //     pageableParams.page = url.searchParams.get('page');
-        // } else {
-        //     pageableParams.page = 1;
-        // }
+        newsParams.code = pathname.replace(pathname.split(/\w+-\w+/)[0], '');
 
         // call api get news
+        loadingAnimation.onShowLoading();
         $.ajax({
             url: 'http://localhost:8000/api/v1/news',
             data: {
                 page: pageableParams.page,
                 limit: pageableParams.limit,
-                category: newsParams.category
+                category: newsParams.code
             },
             type: 'GET',
             success: res => {
@@ -89,7 +61,8 @@ const news = {
                                 <div class="card-body">
                                     <h2 class="card-title">${value.title}</h2>
                                     <div>${value.shortDescription}</div>
-                                    <a href="/tintuconline/home/news${value.id}" class="read-more mt-2 btn btn-primary">Đọc thêm
+                                    <a href="news?id=${value.id}" class="mt-2 btn btn-primary btn-read-more"
+                                    id="news-${value.id}" data-id="${value.id}">Đọc thêm
                                         &rarr;</a>
                                 </div>
                                 <div class="card-footer text-muted">
@@ -107,34 +80,28 @@ const news = {
                         newsParams.content_header = 'Trang chủ';
                     }
                     $('#content-header').html(newsParams.content_header);
-
                     // set paginate
-                    if (res.total / pageableParams.limit > 1) {
-                        news.paging(res.total, () => {
-                            news.loadData();
-                        });
-                    } else {
-                        $('#pagination').remove('li');
-                    }
+                    news.paging(res.total, () => news.loadData());
                 }
             }
-        });
+        }).always(() => loadingAnimation.onHideLoading());
     },
 
     /**
      * pagination using twbsPagiantion
-     * Author: LHTUAN (05/11/2020)
+     * @Author LHTUAN (05/11/2020)
      * @param totalRow
      * @param callback
      */
-    paging: function (totalRow, callback) {
+    paging: (totalRow, callback) => {
         const totalPage = Math.ceil(totalRow / pageableParams.limit);
         $('#pagination').twbsPagination({
             totalPages: totalPage,
             visiblePages: 5,
+            hideOnlyOnePage: true,
             onPageClick: (event, page) => {
                 pageableParams.page = page;
-                sessionStorage.setItem('page', page);
+                sessionStorage.setItem(constants.page, page);
                 history.pushState(null, null, '?page=' + page);
                 setTimeout(callback, 100);
                 window.scrollTo(0, 0);
@@ -144,33 +111,51 @@ const news = {
 
     /**
      * init event
-     * Author: LHTUAN (05/11/2020)
+     * @Author LHTUAN (05/11/2020)
      */
     event: function () {
         /**
          * catch event click category
-         * Author: LHTUAN (05/11/2020)
+         * @Author LHTUAN (05/11/2020)
          */
         $('.category-news').off('click').on('click', function (e) {
             e.preventDefault();
             $('#pagination').twbsPagination('destroy');
-            let code = $(this).data('code');
+            let code = $(this).data(constants.code);
             if (checkBrowserSupportSessionStorage()) {
-                sessionStorage.setItem('url', code);
+                sessionStorage.setItem(constants.code, code);
+                sessionStorage.setItem(constants.readMore, 'false');
             }
-            history.pushState(null, null, sessionStorage.getItem('url'));
-            newsParams.category = code;
+            history.pushState(null, null, sessionStorage.getItem(constants.code));
+            newsParams.code = code;
             pageableParams.page = 1;
             news.loadData();
             window.scrollTo(0, 0);
-        })
+        });
+
+        /**
+         * catch event click link home
+         * @Author LHTUAN (09/11/2020)
+         */
+        $('.home').off('click').on('click', function (e) {
+            e.preventDefault();
+            newsParams.code = constants.home;
+            newsParams.content_header = 'Trang chủ';
+            sessionStorage.setItem(constants.code, constants.home);
+            sessionStorage.setItem(constants.readMore, 'false');
+            sessionStorage.setItem(constants.position, '0');
+            history.pushState(null, null, constants.home);
+            $('#pagination').twbsPagination('destroy');
+            news.loadData();
+            window.scrollTo(0, 0);
+        });
     }
 }
 //#endregion Handling
 
 /**
  * init handling
- * Author: LHTUAN (05/11/2020)
+ * @Author LHTUAN (05/11/2020)
  */
 $(document).ready(function () {
     news.init();
