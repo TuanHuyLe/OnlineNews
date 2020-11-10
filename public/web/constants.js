@@ -34,7 +34,11 @@ const constants = {
     position: 'position',
     readMore: 'readMore',
     code: 'code',
-    page: 'page'
+    page: 'page',
+    url: 'http://localhost:8000/api/v1',
+    getAll: '/news',
+    getOne: id => `/news/id/${id}`,
+    search: title => `/news/search?title=${title}`
 }
 
 //#endregion Constant

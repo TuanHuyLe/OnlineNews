@@ -20,7 +20,7 @@ const readMore = {
     loadData: function (id) {
         loadingAnimation.onShowLoading();
         $.ajax({
-            url: `http://localhost:8000/api/v1/news/${id}`,
+            url: constants.url + constants.getOne(id),
             type: 'GET',
             success: res => {
                 if (res.status === 200) {
@@ -45,6 +45,8 @@ const readMore = {
                             <a class="btn btn-primary mb-5" id="btn-back" href="/tintuconline/${code}?page=${page}">Quay lại</a>
                         `;
                     $('.root').html(html);
+                } else {
+                    $('.root').html(`<h2>${res.message}</h2>`);
                 }
             },
             error: e => {
@@ -100,6 +102,6 @@ const readMore = {
  * init handling
  * @Author LHTUAN (08/11/2020)
  */
-$(document).ready(function () {
+$(document).ready(() => {
     readMore.init();
 });

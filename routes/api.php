@@ -60,17 +60,17 @@ Route::middleware('api')->prefix('v1')->namespace('Api\Admin')->group(function (
  */
 Route::middleware('api')->prefix('v1')->namespace('Api\Web')->group(function () {
     Route::prefix('news')->group(function () {
-        Route::get('', [
+        Route::get('/', [
             'as' => 'news.read',
             'uses' => 'NewsApi@index'
         ]);
 
-        Route::get('/{id}', [
+        Route::get('/id/{id}', [
             'as' => 'news.info',
             'uses' => 'NewsApi@show'
         ]);
 
-        Route::get('/search/title={title}', [
+        Route::get('/search', [
             'as' => 'news.search',
             'uses' => 'NewsApi@search'
         ]);

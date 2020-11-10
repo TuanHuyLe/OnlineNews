@@ -37,7 +37,7 @@ class NewsApi extends Controller
             $news = $this->news->query()->select('id', 'title', 'image', 'created_at', 'shortDescription')
                 ->orderByDesc('created_at')->get();
         } else if (!is_numeric($pageIndex) || !is_numeric($limit)) {
-            return response(['errorCode' => 400, 'message' => 'Data invalid!', 'time' => now()], 400);
+            return response(['status' => 400, 'message' => 'Data invalid!', 'time' => now()], 400);
         } else {
             $news = $this->news->query()->select('id', 'title', 'image', 'created_at', 'shortDescription');
             if (isset($request['category']) && $request['category'] !== 'home') {
@@ -78,9 +78,12 @@ class NewsApi extends Controller
      */
     public function show($id)
     {
+        if (!is_numeric($id)) {
+            return response(['status' => 400, 'message' => 'User Id is invalid! User Id must be number!', 'time' => now()], 400);
+        }
         $news = $this->news->query()->get(['id', 'title', 'content', 'created_at', 'image'])->find($id);
         if (!isset($news)) {
-            return response(['errorCode' => 404, 'message' => 'User Id not found!', 'time' => now()], 404);
+            return response(['status' => 404, 'message' => 'User Id not found!', 'time' => now()], 404);
         }
         return response()->json([
             'status' => 200,
@@ -91,20 +94,25 @@ class NewsApi extends Controller
     /**
      * Display the result of search by title news
      * CreatedBy LHTUAN (10/11/2020)
-     * @param $title
+     * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */
-    public function search($title)
+    public function search(Request $request)
     {
-        $news = News::query()->select(['id', 'title', 'image', 'created_at', 'shortDescription'])
-            ->where('title', 'LIKE', '%' . $title . '%')
+        if (!isset($request['title']) || empty($request['title'])) {
+            return response(['status' => 400, 'message' => 'Từ khóa tìm kiếm không được để trống!', 'time' => now()], 200);
+        }
+        $news = $this->news->query()->select(['id', 'title', 'image', 'created_at', 'shortDescription'])
+            ->where('title', 'LIKE', '%' . $request['title'] . '%')
             ->get();
         if (!isset($news) || $news->isEmpty()) {
-            return response(['errorCode' => 201, 'message' => 'Result search is empty!', 'time' => now()], 201);
+            return response(['status' => 204, 'message' => 'Không tìm thấy bài viết cho từ khóa: ' .
+                $request['title'] . ' !', 'time' => now()], 200);
         }
         return response()->json([
             'status' => 200,
-            'data' => $news
+            'data' => $news,
+            'other' => $request['title']
         ], 200);
     }
 

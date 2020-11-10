@@ -52,6 +52,7 @@
 <script src="{{asset('web/loadAnimation.js')}}"></script>
 <script src="{{asset('web/constants.js')}}"></script>
 <script src="{{asset('web/news.js')}}"></script>
+<script src="{{asset('web/searchNews.js')}}"></script>
 <script src="{{asset('web/readMoreNews.js')}}"></script>
 </body>
 
