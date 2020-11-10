@@ -1,0 +1,19 @@
+#loading{
+    width: 100px;
+    position: absolute;
+    top: calc(50% - 50px);
+    left: calc(50% - 50px);
+    display: none;
+    z-index: 10000;
+}
+#loading-display{
+    position: absolute;
+    background-color: #bbb;
+    opacity: .4;
+    z-index: 9999;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: none;
+}

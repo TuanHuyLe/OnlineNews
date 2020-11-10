@@ -40,7 +40,7 @@ class NewsApi extends Controller
             return response(['errorCode' => 400, 'message' => 'Data invalid!', 'time' => now()], 400);
         } else {
             $news = $this->news->query()->select('id', 'title', 'image', 'created_at', 'shortDescription');
-            if (isset($request['category']) && $request['category'] !== 'all') {
+            if (isset($request['category']) && $request['category'] !== 'home') {
                 $categoryNews = Category::where('code', $request['category'])->first();
                 if (isset($categoryNews)) {
                     $news = $news->where('category_id', $categoryNews->id);
@@ -78,9 +78,29 @@ class NewsApi extends Controller
      */
     public function show($id)
     {
-        $news = News::query()->get(['id', 'title', 'content', 'created_at', 'image'])->find($id);
+        $news = $this->news->query()->get(['id', 'title', 'content', 'created_at', 'image'])->find($id);
         if (!isset($news)) {
             return response(['errorCode' => 404, 'message' => 'User Id not found!', 'time' => now()], 404);
+        }
+        return response()->json([
+            'status' => 200,
+            'data' => $news
+        ], 200);
+    }
+
+    /**
+     * Display the result of search by title news
+     * CreatedBy LHTUAN (10/11/2020)
+     * @param $title
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\JsonResponse|\Illuminate\Http\Response
+     */
+    public function search($title)
+    {
+        $news = News::query()->select(['id', 'title', 'image', 'created_at', 'shortDescription'])
+            ->where('title', 'LIKE', '%' . $title . '%')
+            ->get();
+        if (!isset($news) || $news->isEmpty()) {
+            return response(['errorCode' => 201, 'message' => 'Result search is empty!', 'time' => now()], 201);
         }
         return response()->json([
             'status' => 200,

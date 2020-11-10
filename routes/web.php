@@ -27,6 +27,10 @@ Route::prefix('tintuconline')->namespace('Web')->group(function () {
         'as' => 'category',
         'uses' => 'HomeController@index'
     ]);
+    Route::get('/{news}', [
+        'as' => 'news',
+        'uses' => 'HomeController@index'
+    ]);
     Route::get('/home/news{id}', [
         'as' => 'home.news',
         'uses' => 'NewsController@index'
