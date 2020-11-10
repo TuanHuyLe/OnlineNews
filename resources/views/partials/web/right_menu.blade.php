@@ -3,7 +3,7 @@
     <!-- Search Widget -->
     <div class="card my-4">
         <h5 class="card-header">Tìm kiếm</h5>
-        <form action="{{route('home.search')}}" method="GET" class="card-body">
+        <form action="{{route('home.search')}}" id="search_form" method="GET" class="card-body">
             <div class="input-group">
                 <input type="text" name="key" class="form-control" placeholder="Tìm kiếm...">
                 <span class="input-group-append">

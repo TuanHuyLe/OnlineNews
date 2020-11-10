@@ -38,7 +38,7 @@ const news = {
         // call api get news
         loadingAnimation.onShowLoading();
         $.ajax({
-            url: 'http://localhost:8000/api/v1/news',
+            url: constants.url + constants.getAll,
             data: {
                 page: pageableParams.page,
                 limit: pageableParams.limit,
@@ -82,6 +82,8 @@ const news = {
                     $('#content-header').html(newsParams.content_header);
                     // set paginate
                     news.paging(res.total, () => news.loadData());
+                } else {
+                    $('.root').html('<h2>Dữ liệu trống</h2><br><p>' + res.message + '</p>');
                 }
             }
         }).always(() => loadingAnimation.onHideLoading());
@@ -157,6 +159,6 @@ const news = {
  * init handling
  * @Author LHTUAN (05/11/2020)
  */
-$(document).ready(function () {
+$(document).ready(() => {
     news.init();
 });
