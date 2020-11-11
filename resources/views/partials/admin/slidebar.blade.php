@@ -27,6 +27,10 @@
                         <i class="nav-icon far fa-list-alt"></i>
                         <span>Quản lý thể loại</span>
                     </a>
+                    <a href="{{ route('news.index') }}" class=" waves-effect">
+                        <i class="fas fa-notes-medical"></i>
+                        <span>Quản lý bài viết</span>
+                    </a>
                 </li>
             </ul>
         </div>

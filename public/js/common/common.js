@@ -33,13 +33,14 @@ const commonJS = {
      * Author: LTQuan
      */
     formatDate: (date) => {
-        return !date ? "" : date.split("T")[0].split("-").reverse().join("/");
+        return !date ? "" : date.split(" ")[0].split("-").reverse().join("/");
     },
 
     /**
      * Hàm format Address
      * @param {string} value
      * Author: LTQuan (30/09/2020)
+     * @param index
      **/
     formatLimitString: (value, index = 20) => {
         return !value ? "" : value.length > index ? `${value.substr(0, index)}...` : value;
@@ -133,7 +134,7 @@ const commonJS = {
      * @returns {string} keyId
      * */
     getKeyId: () => {
-        return $(".grid table thead tr:first").attr('keyId');
+        return $("#table-data thead tr:first").attr('keyId');
     },
 
     /**
@@ -151,7 +152,7 @@ const commonJS = {
      * Author: LTQUAN (19/10/2020)
      * */
     getMultiId: () => {
-        return $(".grid table#table-data .row-selected").toArray().map(row => $(row).data(commonJS.getKeyId()));
+        return $("#tbl-data .row-selected").toArray().map(row => $(row).data(commonJS.getKeyId()));
     },
 
     /**
@@ -169,13 +170,13 @@ const commonJS = {
             // Lấy ra ID và Name phù hợp với tùy chọn select
             let id = $(select).data("id");
             let name = $(select).data("name");
-            let url = api[$(select).data("url")];
+            let url = `${api[$(select).data("url")]}/list`;
             $.ajax({
                 url: url,
                 method: 'GET',
                 dataType: 'json'
             }).done(res => {
-                res.Datas.forEach(item => {
+                res.forEach(item => {
                     $(select).append(`<option value="${item[id]}">${item[name]}</option>`);
                 });
             });
@@ -216,7 +217,8 @@ const commonJS = {
  * Author: LTQuan (26/09/2020)
  * */
 const api = {
-    CATEGORY_API: '/api/v1/categories'
+    CATEGORY_API: '/api/v1/categories',
+    NEW_API: '/api/v1/news'
 }
 
 /**
@@ -250,24 +252,25 @@ const typeInput = {
  * Author: LTQuan (28/09/2020)
  * */
 const message = {
-    customer: {
-        ADD_SUCCESS: 'Thêm mới khách hàng thành công!',
-        EDIT_NONE: 'Vui lòng chọn một khách hàng bất kì để sửa!',
+    categories: {
+        ADD_SUCCESS: 'Thêm mới thể loại thành công!',
+        EDIT_NONE: 'Vui lòng chọn một thể loại bất kì để sửa!',
         EDIT_SUCCESS: 'Cập nhật thành công!',
-        COMFIRM_DELETE: 'Bạn có chắc chắn xóa khách hàng này?',
-        DELETE_NONE: 'Vui lòng chọn khách hàng để thực hiện xóa!',
+        COMFIRM_DELETE: 'Bạn có chắc chắn xóa thể loại này?',
+        COMFIRM_MULTI_DELETE: 'Bạn có chắc chắn xóa những thể loại đã chọn không?',
+        DELETE_NONE: 'Vui lòng chọn thể để thực hiện xóa!',
         DELETE_SUCCESS: 'Xóa thành công!',
-        NOT_EXISTS: 'Khách hàng này không còn tồn tại trong hệ thống!'
+        NOT_EXISTS: 'Thể loại này không còn tồn tại trong hệ thống!'
     },
-    employee: {
-        ADD_SUCCESS: 'Thêm mới nhân viên thành công!',
-        EDIT_NONE: 'Vui lòng chọn một nhân viên bất kì để sửa!',
+    news: {
+        ADD_SUCCESS: 'Thêm mới bài viết thành công!',
+        EDIT_NONE: 'Vui lòng chọn một bài viết bất kì để sửa!',
         EDIT_SUCCESS: 'Cập nhật thành công!',
-        COMFIRM_DELETE: 'Bạn có chắc chắn xóa nhân viên này không?',
-        COMFIRM_MULTI_DELETE: 'Bạn có chắc chắn xóa những nhân viên đã chọn không?',
-        DELETE_NONE: 'Vui lòng chọn nhân viên bất kì để thực hiện xóa!',
+        COMFIRM_DELETE: 'Bạn có chắc chắn xóa bài viết này không?',
+        COMFIRM_MULTI_DELETE: 'Bạn có chắc chắn xóa những bài viết đã chọn không?',
+        DELETE_NONE: 'Vui lòng chọn bài viết bất kì để thực hiện xóa!',
         DELETE_SUCCESS: 'Xóa thành công!',
-        NOT_EXISTS: 'Nhân viên này không còn tồn tại trong hệ thống!'
+        NOT_EXISTS: 'Bài viết này không còn tồn tại trong hệ thống!'
     },
     ERROR: 'Có lỗi xảy ra, vui lòng kiểm tra lại!',
     pagable: {
