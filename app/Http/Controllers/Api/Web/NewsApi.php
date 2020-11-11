@@ -37,10 +37,10 @@ class NewsApi extends Controller
             $news = $this->news->query()->select('id', 'title', 'image', 'created_at', 'shortDescription')
                 ->orderByDesc('created_at')->get();
         } else if (!is_numeric($pageIndex) || !is_numeric($limit)) {
-            return response(['errorCode' => 400, 'message' => 'Data invalid!', 'time' => now()], 400);
+            return response(['status' => 400, 'message' => 'Data invalid!', 'time' => now()], 400);
         } else {
             $news = $this->news->query()->select('id', 'title', 'image', 'created_at', 'shortDescription');
-            if (isset($request['category']) && $request['category'] !== 'all') {
+            if (isset($request['category']) && $request['category'] !== 'home') {
                 $categoryNews = Category::where('code', $request['category'])->first();
                 if (isset($categoryNews)) {
                     $news = $news->where('category_id', $categoryNews->id);
@@ -72,13 +72,48 @@ class NewsApi extends Controller
 
     /**
      * Display the specified resource.
-     *
+     * CreatedBy LHTUAN (06/11/2020)
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        if (!is_numeric($id)) {
+            return response(['status' => 400, 'message' => 'User Id is invalid! User Id must be number!', 'time' => now()], 400);
+        }
+        $news = $this->news->query()->get(['id', 'title', 'content', 'created_at', 'image'])->find($id);
+        if (!isset($news)) {
+            return response(['status' => 404, 'message' => 'User Id not found!', 'time' => now()], 404);
+        }
+        return response()->json([
+            'status' => 200,
+            'data' => $news
+        ], 200);
+    }
+
+    /**
+     * Display the result of search by title news
+     * CreatedBy LHTUAN (10/11/2020)
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\JsonResponse|\Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        if (!isset($request['title']) || empty($request['title'])) {
+            return response(['status' => 400, 'message' => 'Từ khóa tìm kiếm không được để trống!', 'time' => now()], 200);
+        }
+        $news = $this->news->query()->select(['id', 'title', 'image', 'created_at', 'shortDescription'])
+            ->where('title', 'LIKE', '%' . $request['title'] . '%')
+            ->get();
+        if (!isset($news) || $news->isEmpty()) {
+            return response(['status' => 204, 'message' => 'Không tìm thấy bài viết cho từ khóa: ' .
+                $request['title'] . ' !', 'time' => now()], 200);
+        }
+        return response()->json([
+            'status' => 200,
+            'data' => $news,
+            'other' => $request['title']
+        ], 200);
     }
 
     /**

@@ -99,9 +99,14 @@ Route::middleware('api')->prefix('v2')->namespace('Api\Web')->group(function () 
             'uses' => 'NewsApi@index'
         ]);
 
-        Route::post('/', [
-            'as' => 'news.create',
-            'uses' => 'NewsApi@store'
+        Route::get('/id/{id}', [
+            'as' => 'news.info',
+            'uses' => 'NewsApi@show'
+        ]);
+
+        Route::get('/search', [
+            'as' => 'news.search',
+            'uses' => 'NewsApi@search'
         ]);
     });
 });
