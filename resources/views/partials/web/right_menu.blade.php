@@ -22,7 +22,7 @@
                     <ul class="list-unstyled mb-0">
                         @foreach($categoryItems as $item)
                             <li>
-                                <a href="{{route('home.newscategory', ['categoryCode'=>$item->code])}}">{{$item->name}}</a>
+                                <a class="category-news" id="{{$item->id}}" data-code="{{$item->code}}" href="{{$item->code}}">{{$item->name}}</a>
                             </li>
                         @endforeach
                     </ul>

@@ -1938,6 +1938,7 @@
     },
     {
         "name": "laravel/framework",
+<<<<<<< HEAD
         "version": "v7.29.3",
         "version_normalized": "7.29.3.0",
         "source": {
@@ -1949,6 +1950,19 @@
             "type": "zip",
             "url": "https://api.github.com/repos/laravel/framework/zipball/93f6d565a07045baa0e4b941ae1f733cd5984d65",
             "reference": "93f6d565a07045baa0e4b941ae1f733cd5984d65",
+=======
+        "version": "v7.29.2",
+        "version_normalized": "7.29.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/laravel/framework.git",
+            "reference": "0fb15ae253c3a043f2c5cbf9641427a7646ea77a"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/laravel/framework/zipball/0fb15ae253c3a043f2c5cbf9641427a7646ea77a",
+            "reference": "0fb15ae253c3a043f2c5cbf9641427a7646ea77a",
+>>>>>>> 08319efe00be5d37a2a4abc6d329f06bd094037a
             "shasum": ""
         },
         "require": {
@@ -2062,7 +2076,11 @@
             "symfony/psr-http-message-bridge": "Required to use PSR-7 bridging features (^2.0).",
             "wildbit/swiftmailer-postmark": "Required to use Postmark mail driver (^3.0)."
         },
+<<<<<<< HEAD
         "time": "2020-11-03T14:12:58+00:00",
+=======
+        "time": "2020-10-29T18:57:35+00:00",
+>>>>>>> 08319efe00be5d37a2a4abc6d329f06bd094037a
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -2566,6 +2584,54 @@
                 "url": "https://tidelift.com/funding/github/packagist/monolog/monolog",
                 "type": "tidelift"
             }
+        ]
+    },
+    {
+        "name": "mustache/mustache",
+        "version": "v2.13.0",
+        "version_normalized": "2.13.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/bobthecow/mustache.php.git",
+            "reference": "e95c5a008c23d3151d59ea72484d4f72049ab7f4"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/bobthecow/mustache.php/zipball/e95c5a008c23d3151d59ea72484d4f72049ab7f4",
+            "reference": "e95c5a008c23d3151d59ea72484d4f72049ab7f4",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.2.4"
+        },
+        "require-dev": {
+            "friendsofphp/php-cs-fixer": "~1.11",
+            "phpunit/phpunit": "~3.7|~4.0|~5.0"
+        },
+        "time": "2019-11-23T21:40:31+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Mustache": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Justin Hileman",
+                "email": "justin@justinhileman.info",
+                "homepage": "http://justinhileman.com"
+            }
+        ],
+        "description": "A Mustache implementation in PHP.",
+        "homepage": "https://github.com/bobthecow/mustache.php",
+        "keywords": [
+            "mustache",
+            "templating"
         ]
     },
     {

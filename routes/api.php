@@ -86,3 +86,22 @@ Route::middleware('api')->prefix('v1')->namespace('Api\Admin')->group(function (
         ]);
     });
 });
+
+/**
+ * Define api web
+ * api/v1/[entity]
+ * CreatedBy: LHTUAN (04/11/2020)
+ */
+Route::middleware('api')->prefix('v1')->namespace('Api\Web')->group(function () {
+    Route::prefix('news')->group(function () {
+        Route::get('/', [
+            'as' => 'news.read',
+            'uses' => 'NewsApi@index'
+        ]);
+
+        Route::post('/', [
+            'as' => 'news.create',
+            'uses' => 'NewsApi@store'
+        ]);
+    });
+});
