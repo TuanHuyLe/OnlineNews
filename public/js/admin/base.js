@@ -397,7 +397,7 @@ class Base {
             $("#current-page").val(this.page);
 
             // Load data
-            this.loadData(res.datas);
+            this.loadData(res.data);
         }).fail(err => {
             console.log(err);
         }).always(() => {

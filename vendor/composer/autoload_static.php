@@ -52,15 +52,11 @@ class ComposerStaticInitd2b91ad2aaba56c141ec806e1e9c128b
             'Whoops\\' => 7,
             'Webmozart\\Assert\\' => 17,
         ),
-<<<<<<< HEAD
-        'U' => 
+        'U' =>
         array (
             'UniSharp\\LaravelFilemanager\\' => 28,
         ),
-        'T' => 
-=======
         'T' =>
->>>>>>> 08319efe00be5d37a2a4abc6d329f06bd094037a
         array (
             'TijsVerkoyen\\CssToInlineStyles\\' => 31,
             'Tests\\' => 6,
@@ -207,15 +203,11 @@ class ComposerStaticInitd2b91ad2aaba56c141ec806e1e9c128b
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
         ),
-<<<<<<< HEAD
-        'UniSharp\\LaravelFilemanager\\' => 
+        'UniSharp\\LaravelFilemanager\\' =>
         array (
             0 => __DIR__ . '/..' . '/unisharp/laravel-filemanager/src',
         ),
-        'TijsVerkoyen\\CssToInlineStyles\\' => 
-=======
         'TijsVerkoyen\\CssToInlineStyles\\' =>
->>>>>>> 08319efe00be5d37a2a4abc6d329f06bd094037a
         array (
             0 => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src',
         ),
@@ -399,15 +391,11 @@ class ComposerStaticInitd2b91ad2aaba56c141ec806e1e9c128b
         array (
             0 => __DIR__ . '/..' . '/laravel/tinker/src',
         ),
-<<<<<<< HEAD
-        'Intervention\\Image\\' => 
+        'Intervention\\Image\\' =>
         array (
             0 => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image',
         ),
-        'Illuminate\\' => 
-=======
         'Illuminate\\' =>
->>>>>>> 08319efe00be5d37a2a4abc6d329f06bd094037a
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate',
         ),

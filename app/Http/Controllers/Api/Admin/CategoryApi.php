@@ -4,7 +4,11 @@ namespace App\Http\Controllers\Api\Admin;
 
 use App\Category;
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Routing\ResponseFactory;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -23,7 +27,7 @@ class CategoryApi extends Controller
      * Display a listing of the resource.
      * CreatedBy: LTQUAN (04/11/2020)
      * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\JsonResponse|\Illuminate\Http\Response
+     * @return Application|ResponseFactory|JsonResponse|Response
      */
     public function index(Request $request)
     {
@@ -48,14 +52,14 @@ class CategoryApi extends Controller
 //                ->values();
             $categories = DB::select($query);
         }
-        return response()->json(['page'=>$pageIndex, 'pageSize'=>$limit, 'totalRecord'=>$totalRecord, 'datas'=>$categories], 200);
+        return response()->json(['page'=>$pageIndex, 'pageSize'=>$limit, 'totalRecord'=>$totalRecord, 'data'=>$categories], 200);
     }
 
     /**
      * Store a newly created resource in storage.
      * CreatedBy: LTQUAN (04/11/2020)
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function store(Request $request)
     {
@@ -84,7 +88,7 @@ class CategoryApi extends Controller
      *
      * CreatedBy: LTQUAN (04/11/2020)
      * @param int $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\JsonResponse|\Illuminate\Http\Response
+     * @return Application|ResponseFactory|JsonResponse|Response
      */
     public function show($id)
     {
@@ -98,7 +102,7 @@ class CategoryApi extends Controller
      * Update the specified resource in storage.
      * CreatedBy: LTQUAN (04/11/2020)
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function update(Request $request)
     {
@@ -131,7 +135,7 @@ class CategoryApi extends Controller
      * Remove the specified resource from storage.
      * CreatedBy: LTQUAN (04/11/2020)
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function destroy(Request $request)
     {
