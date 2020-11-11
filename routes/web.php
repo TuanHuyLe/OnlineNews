@@ -55,4 +55,9 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
        'as' => 'categories.index',
        'uses' => 'AdminCategoryController@index'
     ]);
+
+    Route::get('/news', [
+       'as' => 'news.index',
+       'uses' => 'AdminNewController@index'
+    ]);
 });

@@ -29,7 +29,7 @@
 <div id="layout-wrapper">
 
     <img id="loading" src="{{ asset('blog_admin/images/loadding.gif')  }}" alt="loadding">
-    <div id="loading-display"></div>
+    <div class="loading-display"></div>
 
     @include('partials.admin.header')
     @include('partials.admin.slidebar')
@@ -50,6 +50,7 @@
 
 <div class="rightbar-overlay"></div>
 <script src="{{ asset('blog_admin/libs/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('blog_admin/libs/jquery-validation/jquery.validate.min.js') }}"></script>
 <script src="{{ asset('blog_admin/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('blog_admin/libs/metismenu/metisMenu.min.js') }}"></script>
 <script src="{{ asset('blog_admin/libs/simplebar/simplebar.min.js') }}"></script>
@@ -58,6 +59,5 @@
 <script src="{{ asset('blog_admin/libs/sweetalert2/sweetalert2.min.js') }}"></script>
 <script src="{{ asset('blog_admin/js/app.js') }}"></script>
 @yield('script', false)
-
 </body>
 </html>

@@ -4,9 +4,15 @@
 th, td{
     text-align: center;
 }
+tr{
+    cursor: pointer;
+}
 td{
     padding: 0.25rem !important;
     vertical-align: unset !important;
+}
+#form-data{
+    margin-bottom: 0;
 }
 #loading{
     width: 100px;
@@ -16,10 +22,10 @@ td{
     display: none;
     z-index: 10000;
 }
-#loading-display{
+.loading-display{
     position: absolute;
-    background-color: #bbb;
-    opacity: .4;
+    background-color: #000;
+    opacity: .5;
     z-index: 9999;
     top: 0;
     bottom: 0;
@@ -43,6 +49,9 @@ td{
     top:21px;
     right: 15px;
 }
+.row-selected{
+    background-color: #7fffd4 !important;
+}
 
 /* width */
 ::-webkit-scrollbar {
@@ -63,5 +72,9 @@ td{
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #b30000;
+    background: #aaa;
+}
+
+#mceu_38{
+    display: none;
 }
