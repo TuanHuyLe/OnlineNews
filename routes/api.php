@@ -26,9 +26,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
  */
 Route::middleware('api')->prefix('v1')->namespace('Api\Admin')->group(function () {
     Route::prefix('categories')->group(function () {
+
         Route::get('/', [
             'as' => 'categories.read',
             'uses' => 'CategoryApi@index'
+        ]);
+
+        Route::get('/list', [
+            'as' => 'categories.list',
+            'uses' => 'CategoryApi@list'
         ]);
 
         Route::get('/{id}', [
@@ -46,9 +52,37 @@ Route::middleware('api')->prefix('v1')->namespace('Api\Admin')->group(function (
             'uses' => 'CategoryApi@update'
         ]);
 
-        Route::delete('/{id}', [
+        Route::delete('/', [
             'as' => 'categories.delete',
             'uses' => 'CategoryApi@destroy'
+        ]);
+    });
+
+    Route::prefix('news')->group(function () {
+
+        Route::get('/', [
+            'as' => 'news.read',
+            'uses' => 'NewsApi@index'
+        ]);
+
+        Route::get('/{id}', [
+            'as' => 'news.readbyid',
+            'uses' => 'NewsApi@show'
+        ]);
+
+        Route::post('/', [
+            'as' => 'news.create',
+            'uses' => 'NewsApi@store'
+        ]);
+
+        Route::put('/', [
+            'as' => 'news.update',
+            'uses' => 'NewsApi@update'
+        ]);
+
+        Route::delete('/', [
+            'as' => 'news.delete',
+            'uses' => 'NewsApi@destroy'
         ]);
     });
 });
@@ -58,7 +92,7 @@ Route::middleware('api')->prefix('v1')->namespace('Api\Admin')->group(function (
  * api/v1/[entity]
  * CreatedBy: LHTUAN (04/11/2020)
  */
-Route::middleware('api')->prefix('v1')->namespace('Api\Web')->group(function () {
+Route::middleware('api')->prefix('v2')->namespace('Api\Web')->group(function () {
     Route::prefix('news')->group(function () {
         Route::get('/', [
             'as' => 'news.read',
