@@ -23,55 +23,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd9171f6-0d43-4cd3-90c9-1b654c636483" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_11_11_2020_7_45_PM_[Default_Changelist]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_11_11_2020_7_45_PM__Default_Changelist_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/AdminPermissionController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/AdminRoleController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/AdminUserController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Admin/PermissionApi.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Admin/RoleApi.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Admin/UserApi.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Permission.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Policies/CategoryPolicy.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Policies/NewPolicy.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Policies/RolePolicy.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Policies/UserPolicy.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/permission.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_11_11_142007_add_table_user_role.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_11_11_142218_create_permissions_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_11_11_142756_add_table_role_permission.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_11_13_125540_add_deletae_at_to_role.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_11_13_125635_add_deletae_at_to_user.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_11_13_134010_add_deletae_at_to_new.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_11_14_143414_add_delete_at_to_permission.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/blog_admin/select2/select2.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/blog_admin/select2/select2.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/admin/permission.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/admin/role.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/admin/user.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/permission/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/role/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/user/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/TinTucOnline.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/TinTucOnline.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/Admin/CategoryApi.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Admin/CategoryApi.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/Admin/NewsApi.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Admin/NewsApi.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/News.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/News.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Role.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Role.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/admin/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/admin/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/common/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/common/common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/Web/NewsApi.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Web/NewsApi.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/ViewComposers/CategoryViewComposer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/ViewComposers/CategoryViewComposer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/ComposerServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/ComposerServiceProvider.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/web/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/web/constants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/category/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/category/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/new/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/new/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/partials/admin/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/admin/header.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/partials/admin/slidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/admin/slidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/partials/web/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/web/footer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/web/news.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/web/news.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/common.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/common.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/partials/web/right_menu.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/web/right_menu.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,8 +49,8 @@
       <list>
         <option value="composer.json" />
         <option value="CSS File" />
-        <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
         <option value="JavaScript File" />
       </list>
     </option>
@@ -298,7 +258,7 @@
       <workItem from="1605084341114" duration="1277000" />
       <workItem from="1605233551463" duration="1006000" />
       <workItem from="1605247764071" duration="1790000" />
-      <workItem from="1605618158460" duration="1373000" />
+      <workItem from="1605618158460" duration="5587000" />
     </task>
     <servers />
   </component>
@@ -383,10 +343,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1604667896666" />
-    <state x="346" y="84" width="672" height="643" key="search.everywhere.popup" timestamp="1605619526227">
+    <state x="346" y="84" width="672" height="643" key="search.everywhere.popup" timestamp="1605623328827">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="84" width="672" height="643" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1605619526227" />
+    <state x="346" y="84" width="672" height="643" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1605623328827" />
     <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1366.768@0.0.1366.768" timestamp="1605249041506" />
   </component>
 </project>

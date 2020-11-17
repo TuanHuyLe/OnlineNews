@@ -183,4 +183,11 @@ Route::middleware('api')->prefix('web/v1')->namespace('Api\Web')->group(function
             'uses' => 'NewsApi@search'
         ]);
     });
+
+    Route::prefix('categories')->group(function () {
+        Route::get('/', [
+            'as' => 'categories.read',
+            'uses' => 'CategoryApi@index'
+        ]);
+    });
 });

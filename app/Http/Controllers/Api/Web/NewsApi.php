@@ -51,6 +51,9 @@ class NewsApi extends Controller
                 ->take($request['limit'])
                 ->orderBy('created_at', 'desc')->get();
         }
+        if ($news->isEmpty()) {
+            return response()->json(['status' => 204, 'message' => 'Dữ liệu trống', 'time' => now()], 200);
+        }
         return response()->json([
             'status' => 200,
             'data' => $news,
