@@ -24,37 +24,43 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
  * api/v1/[entity]
  * CreatedBy: LTQUAN (04/11/2020)
  */
-Route::middleware('api')->prefix('v1')->namespace('Api\Admin')->group(function () {
+Route::prefix('v1')->namespace('Api\Admin')->group(function () {
     Route::prefix('categories')->group(function () {
 
         Route::get('/', [
             'as' => 'categories.read',
-            'uses' => 'CategoryApi@index'
+            'uses' => 'CategoryApi@index',
+            'middleware' => 'can:view_category'
         ]);
 
         Route::get('/list', [
             'as' => 'categories.list',
-            'uses' => 'CategoryApi@list'
+            'uses' => 'CategoryApi@list',
+            'middleware' => 'can:view_category'
         ]);
 
         Route::get('/{id}', [
             'as' => 'categories.readbyid',
-            'uses' => 'CategoryApi@show'
+            'uses' => 'CategoryApi@show',
+            'middleware' => 'can:view_category'
         ]);
 
         Route::post('/', [
             'as' => 'categories.create',
-            'uses' => 'CategoryApi@store'
+            'uses' => 'CategoryApi@store',
+            'middleware' => 'can:add_category'
         ]);
 
         Route::put('/', [
             'as' => 'categories.update',
-            'uses' => 'CategoryApi@update'
+            'uses' => 'CategoryApi@update',
+            'middleware' => 'can:edit_category'
         ]);
 
         Route::delete('/', [
             'as' => 'categories.delete',
-            'uses' => 'CategoryApi@destroy'
+            'uses' => 'CategoryApi@destroy',
+            'middleware' => 'can:delete_category'
         ]);
     });
 
@@ -62,27 +68,32 @@ Route::middleware('api')->prefix('v1')->namespace('Api\Admin')->group(function (
 
         Route::get('/', [
             'as' => 'news.read',
-            'uses' => 'NewsApi@index'
+            'uses' => 'NewsApi@index',
+            'middleware' => 'can:view_new'
         ]);
 
         Route::get('/{id}', [
             'as' => 'news.readbyid',
-            'uses' => 'NewsApi@show'
+            'uses' => 'NewsApi@show',
+            'middleware' => 'can:view_new'
         ]);
 
         Route::post('/', [
             'as' => 'news.create',
-            'uses' => 'NewsApi@store'
+            'uses' => 'NewsApi@store',
+            'middleware' => 'can:add_new'
         ]);
 
         Route::put('/', [
             'as' => 'news.update',
-            'uses' => 'NewsApi@update'
+            'uses' => 'NewsApi@update',
+            'middleware' => 'can:edit_new'
         ]);
 
         Route::delete('/', [
             'as' => 'news.delete',
-            'uses' => 'NewsApi@destroy'
+            'uses' => 'NewsApi@destroy',
+            'middleware' => 'can:delete_new'
         ]);
     });
 
@@ -90,32 +101,38 @@ Route::middleware('api')->prefix('v1')->namespace('Api\Admin')->group(function (
 
         Route::get('/', [
             'as' => 'roles.read',
-            'uses' => 'RoleApi@index'
+            'uses' => 'RoleApi@index',
+            'middleware' => 'can:view_role'
         ]);
 
         Route::get('/list', [
             'as' => 'roles.list',
-            'uses' => 'RoleApi@list'
+            'uses' => 'RoleApi@list',
+            'middleware' => 'can:view_role'
         ]);
 
         Route::get('/{id}', [
             'as' => 'roles.readbyid',
-            'uses' => 'RoleApi@show'
+            'uses' => 'RoleApi@show',
+            'middleware' => 'can:view_role'
         ]);
 
         Route::post('/', [
             'as' => 'roles.create',
-            'uses' => 'RoleApi@store'
+            'uses' => 'RoleApi@store',
+            'middleware' => 'can:add_role'
         ]);
 
         Route::put('/', [
             'as' => 'roles.update',
-            'uses' => 'RoleApi@update'
+            'uses' => 'RoleApi@update',
+            'middleware' => 'can:edit_role'
         ]);
 
         Route::delete('/', [
             'as' => 'roles.delete',
-            'uses' => 'UserApi@destroy'
+            'uses' => 'UserApi@destroy',
+            'middleware' => 'can:delete_role'
         ]);
     });
 
@@ -123,27 +140,32 @@ Route::middleware('api')->prefix('v1')->namespace('Api\Admin')->group(function (
 
         Route::get('/', [
             'as' => 'users.read',
-            'uses' => 'UserApi@index'
+            'uses' => 'UserApi@index',
+            'middleware' => 'can:view_member'
         ]);
 
         Route::get('/{id}', [
             'as' => 'users.readbyid',
-            'uses' => 'UserApi@show'
+            'uses' => 'UserApi@show',
+            'middleware' => 'can:view_member'
         ]);
 
         Route::post('/', [
             'as' => 'users.create',
-            'uses' => 'UserApi@store'
+            'uses' => 'UserApi@store',
+            'middleware' => 'can:add_member'
         ]);
 
         Route::put('/', [
             'as' => 'users.update',
-            'uses' => 'UserApi@update'
+            'uses' => 'UserApi@update',
+            'middleware' => 'can:edit_member'
         ]);
 
         Route::delete('/', [
             'as' => 'users.delete',
-            'uses' => 'UserApi@destroy'
+            'uses' => 'UserApi@destroy',
+            'middleware' => 'can:delete_member'
         ]);
     });
 

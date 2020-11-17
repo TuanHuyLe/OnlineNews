@@ -7,10 +7,11 @@
 @section('css')
     <link href="{{ asset('blog_admin/select2/select2.min.css') }}" rel="stylesheet"/>
     <style>
-        .select2{
+        .select2 {
             width: 100% !important;
         }
-        .select2-selection{
+
+        .select2-selection {
             height: 36.53px;
             line-height: 25px;
             padding-left: 0.4em;
@@ -34,16 +35,25 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-7">
-                            <button id="btn-add" title="Thêm mới" class="btn btn-success waves-effect waves-light">
-                                <i class="far fa-plus-square"></i> Thêm mới
-                            </button>
-                            <button id="btn-edit" disabled title="chỉnh sửa" class="btn btn-warning waves-effect waves-light">
-                                <i class="fas fa-edit"></i> Chỉnh sửa
-                            </button>
-                            <button id="btn-delete" disabled title="xóa" data-url="#" class="btn_delete btn btn-danger waves-effect waves-light">
-                                <i class="far fa-trash-alt"></i> Xóa
-                            </button>
-                            <input id="display-dialog" type="hidden" data-toggle="modal" data-target=".bs-example-modal-center" />
+                            @can('add_member')
+                                <button id="btn-add" title="Thêm mới" class="btn btn-success waves-effect waves-light">
+                                    <i class="far fa-plus-square"></i> Thêm mới
+                                </button>
+                            @endcan
+                            @can('edit_member')
+                                <button id="btn-edit" disabled title="chỉnh sửa"
+                                        class="btn btn-warning waves-effect waves-light">
+                                    <i class="fas fa-edit"></i> Chỉnh sửa
+                                </button>
+                            @endcan
+                            @can('delete_member')
+                                <button id="btn-delete" disabled title="xóa" data-url="#"
+                                        class="btn_delete btn btn-danger waves-effect waves-light">
+                                    <i class="far fa-trash-alt"></i> Xóa
+                                </button>
+                            @endcan
+                            <input id="display-dialog" type="hidden" data-toggle="modal"
+                                   data-target=".bs-example-modal-center"/>
                         </div>
                         <div class="col-md-5">
                             <form>
@@ -120,11 +130,12 @@
     </div>
 
     <div class="col-sm-6 col-md-4 col-xl-3">
-        <div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title mt-0">Thông tin thể loại</h5>
+                        <h5 class="modal-title mt-0">Thông tin thành viên</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -135,19 +146,22 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Tên thành viên</label>
-                                        <input type="text" name="name" placeholder="Nhập tên thành viên" class="form-control" />
+                                        <input type="text" name="name" placeholder="Nhập tên thành viên"
+                                               class="form-control"/>
                                     </div>
                                     <div class="form-group">
                                         <label>Email</label>
-                                        <input type="text" name="email" placeholder="Nhập email" class="form-control" />
+                                        <input type="text" name="email" placeholder="Nhập email" class="form-control"/>
                                     </div>
                                     <div class="form-group">
                                         <label>Mật khẩu</label>
-                                        <input type="password" name="password" placeholder="Nhập mật khẩu" class="form-control" />
+                                        <input type="password" name="password" placeholder="Nhập mật khẩu"
+                                               class="form-control"/>
                                     </div>
                                     <div class="form-group">
                                         <label>Vai trò</label>
-                                        <select id="role-id" multiple class="form-control" fetch data-id="id" data-name="name" data-url="ROLE_API">
+                                        <select id="role-id" multiple class="form-control" fetch data-id="id"
+                                                data-name="name" data-url="ROLE_API">
                                         </select>
                                     </div>
                                 </div>
@@ -155,7 +169,8 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button id="btn-cancel" data-dismiss="modal" title="hủy bỏ" class="btn btn-danger waves-effect waves-light">
+                        <button id="btn-cancel" data-dismiss="modal" title="hủy bỏ"
+                                class="btn btn-danger waves-effect waves-light">
                             <i class="fas fa-times"></i> Hủy bỏ
                         </button>
                         <button id="btn-save" title="lưu" class="btn btn-primary waves-effect waves-light">
