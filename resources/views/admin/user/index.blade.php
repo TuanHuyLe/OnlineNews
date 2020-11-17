@@ -1,17 +1,32 @@
 @extends('layouts.admin')
 
 @section('title')
-    <title>Quản lý thể loại</title>
+    <title>Quản lý thành viên</title>
+@endsection
+
+@section('css')
+    <link href="{{ asset('blog_admin/select2/select2.min.css') }}" rel="stylesheet"/>
+    <style>
+        .select2{
+            width: 100% !important;
+        }
+        .select2-selection{
+            height: 36.53px;
+            line-height: 25px;
+            padding-left: 0.4em;
+        }
+    </style>
 @endsection
 
 @section('script')
+    <script src="{{ asset('blog_admin/select2/select2.min.js') }}"></script>
     <script src="{{ asset('js/common/common.js') }}"></script>
     <script src="{{ asset('js/admin/base.js') }}"></script>
-    <script src="{{ asset('js/admin/category.js') }}"></script>
+    <script src="{{ asset('js/admin/user.js') }}"></script>
 @endsection
 
 @section('content')
-    @include('partials.admin.content-header', ['name'=>'Quản lý thể loại', 'key'=>'Danh sách', 'url'=>route('categories.index')])
+    @include('partials.admin.content-header', ['name'=>'Quản lý thành viên', 'key'=>'Danh sách', 'url'=>route('users.index')])
 
     <div class="row" style="height: calc(100vh - 205px);">
         <div class="col-lg-12">
@@ -57,8 +72,8 @@
                         <thead>
                         <tr keyId="id">
                             <th style="width: 60px" fieldname="id">Id</th>
-                            <th fieldname="name">Tên danh mục</th>
-                            <th fieldname="description">Mô tả</th>
+                            <th fieldname="name">Tên thành viên</th>
+                            <th fieldname="email">email</th>
                             <th fieldname="created_at" format="date">Ngày tạo</th>
                             <th fieldname="updated_at" format="date">Ngày sửa gần nhất</th>
                         </tr>
@@ -119,12 +134,21 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="txtUsername">Tên thể loại</label>
-                                        <input type="text" name="name" placeholder="Nhập tên thể loại" class="form-control" />
+                                        <label>Tên thành viên</label>
+                                        <input type="text" name="name" placeholder="Nhập tên thành viên" class="form-control" />
                                     </div>
                                     <div class="form-group">
-                                        <label for="txtEmail">Mô tả</label>
-                                        <textarea class="form-control" placeholder="Nhập mô tả" name="description" rows="3"></textarea>
+                                        <label>Email</label>
+                                        <input type="text" name="email" placeholder="Nhập email" class="form-control" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Mật khẩu</label>
+                                        <input type="password" name="password" placeholder="Nhập mật khẩu" class="form-control" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Vai trò</label>
+                                        <select id="role-id" multiple class="form-control" fetch data-id="id" data-name="name" data-url="ROLE_API">
+                                        </select>
                                     </div>
                                 </div>
                             </div>

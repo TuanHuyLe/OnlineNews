@@ -218,7 +218,10 @@ const commonJS = {
  * */
 const api = {
     CATEGORY_API: '/api/v1/categories',
-    NEW_API: '/api/v1/news'
+    NEW_API: '/api/v1/news',
+    USER_API: '/api/v1/users',
+    ROLE_API: '/api/v1/roles',
+    PERMISSION_API: '/api/v1/permissions',
 }
 
 /**

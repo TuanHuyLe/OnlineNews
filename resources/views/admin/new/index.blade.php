@@ -13,7 +13,7 @@
 @endsection
 
 @section('content')
-    @include('partials.admin.content-header', ['name'=>'Quản lý thể loại', 'key'=>'Danh sách', 'url'=>route('categories.index')])
+    @include('partials.admin.content-header', ['name'=>'Quản lý bài viết', 'key'=>'Danh sách', 'url'=>route('news.index')])
 
     <div class="row" style="height: calc(100vh - 205px);">
         <div class="col-lg-12">
@@ -82,7 +82,7 @@
                     </div>
                     <input id="current-page" class="form-control ml-1" type="text"
                            style="border-color: #74788d; width: 60px; margin-left: 1px; margin-right: 1px;">
-                    <span id="total-page" style="padding: 0 5px; line-height: 35px;">trên  </span>
+                    <span id="total-page" class="span-number-text">trên  </span>
                     <div class="btn-group">
                         <button id="btn-page-next" class="btn btn-outline-secondary">
                             <i class="fas fa-angle-right"></i>
