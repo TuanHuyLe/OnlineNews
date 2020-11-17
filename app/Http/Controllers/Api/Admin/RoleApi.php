@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Api\Admin;
 
-use App\Category;
 use App\Http\Controllers\Controller;
+use App\Role;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\JsonResponse;
@@ -13,19 +13,19 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
-class CategoryApi extends Controller
+class RoleApi extends Controller
 {
 
-    private $category;
+    private $role;
 
-    public function __construct(Category $category)
+    public function __construct(Role $role)
     {
-        $this->category = $category;
+        $this->role = $role;
     }
 
     /**
      * Display a listing of the resource.
-     * CreatedBy: LTQUAN (04/11/2020)
+     * CreatedBy: LTQUAN (13/10/2020)
      * @param Request $request
      * @return Application|ResponseFactory|JsonResponse|Response
      */
@@ -34,48 +34,50 @@ class CategoryApi extends Controller
         $pageIndex = $request['page'];
         $limit = $request['pageSize'];
         $code = $request['filter'];
-        $totalRecord = $this->category->where('code', 'like', '%' . $code . '%')->count();
+        $totalRecord = $this->role->where('code', 'like', '%'.$code.'%')->count();
         if (!isset($pageIndex) || !isset($limit))
-            $categories = $this->category->all('id', 'name', 'description', 'created_at', 'updated_at');
+            $roles = $this->role->all('id', 'name', 'description', 'created_at', 'updated_at');
         else if (!is_numeric($pageIndex) || !is_numeric($limit))
             return response(['errorCode' => 400, 'message' => 'Data invalid!', 'time' => now()], 400);
         else {
-            $query = 'select id, name, code, created_at, updated_at, description from categories where deleted_at is null';
-            if ($code != null) {
-                $query .= ' and code like "%' . $code . '%"';
+            $query = 'select id, name, code, created_at, updated_at from roles where deleted_at is null';
+            if ($code != null){
+                $query .= ' and code like "%'.$code.'%"';
             }
-            $query .= ' limit ' . $limit . ' offset ' . (($pageIndex - 1) * $limit);
-//            $categories = $this->category->all('id', 'name', 'description', 'created_at', 'updated_at')
-//                ->sortByDesc('created_at')
-//                ->skip(($pageIndex - 1) * $limit)
-//                ->take($limit)
-//                ->values();
-            $categories = DB::select($query);
+            $query .= ' limit '.$limit.' offset '.(($pageIndex - 1) * $limit);
+            $roles = DB::select($query);
         }
-        return response()->json(['page' => $pageIndex, 'pageSize' => $limit, 'totalRecord' => $totalRecord, 'data' => $categories], 200);
+        return response()->json(['page'=>$pageIndex, 'pageSize'=>$limit, 'totalRecord'=>$totalRecord, 'data'=>$roles], 200);
     }
 
     /**
      * Store a newly created resource in storage.
-     * CreatedBy: LTQUAN (04/11/2020)
+     * CreatedBy: LTQUAN (13/10/2020)
      * @param Request $request
      * @return JsonResponse
      */
     public function store(Request $request)
     {
-        $category = ['name' => $request->name, 'code' => Str::slug($request->name), 'description' => $request->description];
-        $count = $this->category->where('code', $category['code'])->count();
+        $role = [
+            'name' => $request->name,
+            'code' => $request->code,
+            'permission_ids' => $request->permission_ids
+        ];
+        $count = $this->role->where('code', $role['code'])->count();
         if ($count > 0) {
             $response = ['errorCode' => 400, 'message' => 'Thể loại đã tồn tại trong hệ thống', 'time' => now()];
         } else {
             try {
-                $this->category->create([
-                    'name' => $category['name'],
-                    'code' => $category['code'],
-                    'description' => $category['description']
+                DB::beginTransaction();
+                $roleEntity = $this->role->create([
+                    'name' => $role['name'],
+                    'code' => $role['code']
                 ]);
+                $roleEntity->permissions()->attach($role['permission_ids']);
+                DB::commit();
                 $response = ['errorCode' => 201, 'message' => 'Thêm mới thành công', 'time' => now()];
             } catch (\Exception $exception) {
+                DB::rollBack();
                 Log::error('Message: ' . $exception->getMessage() . ', Line: ' . $exception->getLine());
                 $response = ['errorCode' => 500, 'message' => 'Có lỗi xảy ra, vui lòng thử lại', 'time' => now()];
             }
@@ -85,44 +87,56 @@ class CategoryApi extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * CreatedBy: LTQUAN (04/11/2020)
-     * @param int $id
+     * CreatedBy: LTQUAN (13/10/2020)
+     * @param  int  $id
      * @return Application|ResponseFactory|JsonResponse|Response
      */
     public function show($id)
     {
-        $categories = $this->category->select('id', 'name', 'description')->where('id', $id)->get();
-        if (sizeof($categories) > 0)
-            return response()->json($categories[0], 200);
-        return response(['errorCode' => 404, 'message' => 'Thể loại không tồn tại', 'time' => time()], 404);
+        $role = $this->role->select('id', 'name', 'code')->where('id', $id)->first();
+        if ($role){
+            $permissions = DB::table('role_permission')
+                ->where('role_id', '=', $id)
+                ->get('permission_id');
+            $permission_ids = [];
+            if(sizeof($permissions) > 0){
+                foreach ($permissions as $permission)
+                    array_push($permission_ids, $permission->permission_id);
+            }
+            $role['permission_ids'] = $permission_ids;
+            return response()->json($role, 200);
+        }
+        return response(['errorCode' => 404,'message'=>'Thể loại không tồn tại', 'time'=>time()], 404);
     }
 
     /**
      * Update the specified resource in storage.
-     * CreatedBy: LTQUAN (04/11/2020)
+     * CreatedBy: LTQUAN (13/10/2020)
      * @param Request $request
      * @return JsonResponse
      */
     public function update(Request $request)
     {
-        $category = [
+        $role = [
             'id' => $request->id,
-            'name' => $request->name, 'code' => Str::slug($request->name),
-            'description' => $request->description
+            'name' => $request->name,
+            'code' => $request->code,
+            'permission_ids' => $request->permission_ids
         ];
-        $categories = $this->category->where('code', $category['code'])->get();
-        if (sizeof($categories) > 0 && $categories[0]->id != $category['id']) {
-            $response = ['errorCode' => 400, 'message' => 'Thể loại đã tồn tại trong hệ thống', 'time' => now()];
+        $roles = $this->role->where('code', $role['code'])->get();
+        if (sizeof($roles) > 0 && $roles[0]->id != $role['id']) {
+            $response = ['errorCode' => 400, 'message' => 'Vai trò đã tồn tại trong hệ thống', 'time' => now()];
         } else {
             try {
-                $this->category->find($category['id'])->update([
-                    'name' => $category['name'],
-                    'code' => $category['code'],
-                    'description' => $category['description'],
+                $roleEntity = $this->role->find($role['id']);
+                $id = $roleEntity->update([
+                    'name' => $role['name'],
+                    'code' => $role['code'],
                     'updated_at' => now()
                 ]);
-                $response = ['errorCode' => 200, 'message' => 'Cập nhật thể loại thành công', 'time' => now()];
+                if ($id)
+                    $roleEntity->permissions()->sync($role['permission_ids']);
+                $response = ['errorCode' => 200, 'message' => 'Cập nhật vai trò thành công', 'time' => now()];
             } catch (\Exception $exception) {
                 Log::error('Message: ' . $exception->getMessage() . ', Line: ' . $exception->getLine());
                 $response = ['errorCode' => 500, 'message' => 'Có lỗi xảy ra, vui lòng thử lại', 'time' => now()];
@@ -133,7 +147,7 @@ class CategoryApi extends Controller
 
     /**
      * Remove the specified resource from storage.
-     * CreatedBy: LTQUAN (04/11/2020)
+     * CreatedBy: LTQUAN (13/10/2020)
      * @param Request $request
      * @return JsonResponse
      */
@@ -141,12 +155,11 @@ class CategoryApi extends Controller
     {
         $ids = $request->request->all();
         try {
-            if (isset($ids) && is_array($ids)) {
-                foreach ($ids as $id) {
-                    $this->category->find($id)->delete();
-                }
+            if (isset($ids) && is_array($ids)){
+                foreach ($ids as  $id)
+                    $this->role->find($id)->delete();
                 $response = ['errorCode' => 200, 'message' => 'Xóa thành công', 'time' => now()];
-            } else {
+            }else{
                 $response = ['errorCode' => 400, 'message' => 'Có lỗi xảy ra, vui lòng thử lại', 'time' => now()];
             }
         } catch (\Exception $exception) {
@@ -160,9 +173,8 @@ class CategoryApi extends Controller
      * Lấy danh sách thể loại
      * CreatedBy: LTQUAN (11/11/2020)
      */
-    public function list()
-    {
-        $categories = Category::all('id', 'name');
-        return response()->json($categories, 200);
+    public function list(){
+        $roles = Role::all('id', 'name');
+        return response()->json($roles, 200);
     }
 }

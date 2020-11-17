@@ -85,6 +85,80 @@ Route::middleware('api')->prefix('v1')->namespace('Api\Admin')->group(function (
             'uses' => 'NewsApi@destroy'
         ]);
     });
+
+    Route::prefix('roles')->group(function () {
+
+        Route::get('/', [
+            'as' => 'roles.read',
+            'uses' => 'RoleApi@index'
+        ]);
+
+        Route::get('/list', [
+            'as' => 'roles.list',
+            'uses' => 'RoleApi@list'
+        ]);
+
+        Route::get('/{id}', [
+            'as' => 'roles.readbyid',
+            'uses' => 'RoleApi@show'
+        ]);
+
+        Route::post('/', [
+            'as' => 'roles.create',
+            'uses' => 'RoleApi@store'
+        ]);
+
+        Route::put('/', [
+            'as' => 'roles.update',
+            'uses' => 'RoleApi@update'
+        ]);
+
+        Route::delete('/', [
+            'as' => 'roles.delete',
+            'uses' => 'UserApi@destroy'
+        ]);
+    });
+
+    Route::prefix('users')->group(function () {
+
+        Route::get('/', [
+            'as' => 'users.read',
+            'uses' => 'UserApi@index'
+        ]);
+
+        Route::get('/{id}', [
+            'as' => 'users.readbyid',
+            'uses' => 'UserApi@show'
+        ]);
+
+        Route::post('/', [
+            'as' => 'users.create',
+            'uses' => 'UserApi@store'
+        ]);
+
+        Route::put('/', [
+            'as' => 'users.update',
+            'uses' => 'UserApi@update'
+        ]);
+
+        Route::delete('/', [
+            'as' => 'users.delete',
+            'uses' => 'UserApi@destroy'
+        ]);
+    });
+
+    Route::prefix('permissions')->group(function () {
+
+        Route::get('/', [
+            'as' => 'permissions.read',
+            'uses' => 'PermissionApi@index'
+        ]);
+
+        Route::get('/list', [
+            'as' => 'permissions.list',
+            'uses' => 'PermissionApi@list'
+        ]);
+    });
 });
 
 /**

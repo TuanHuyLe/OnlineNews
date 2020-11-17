@@ -35,20 +35,20 @@ class NewsApi extends Controller
         $pageIndex = $request['page'];
         $limit = $request['pageSize'];
         $filter = $request['filter'];
-        $totalRecord = $this->news->where('id', 'like', '%'.$filter.'%')->count();
+        $totalRecord = $this->news->where('id', 'like', '%' . $filter . '%')->count();
         if (!isset($pageIndex) || !isset($limit))
             $news = $this->news->all('id', 'name', 'description', 'created_at', 'updated_at');
         else if (!is_numeric($pageIndex) || !is_numeric($limit))
             return response(['errorCode' => 400, 'message' => 'Data invalid!', 'time' => now()], 400);
         else {
-            $query = 'SELECT n.id, title, c.name as category, shortDescription, n.created_at, n.updated_at FROM news n left join categories c on n.category_id = c.id WHERE deleted_at IS NULL';
-            if ($filter != null){
-                $query .= ' and title like "%'.$filter.'%"';
+            $query = 'SELECT n.id, title, c.name as category, shortDescription, n.created_at, n.updated_at FROM news n left join categories c on n.category_id = c.id WHERE n.deleted_at IS NULL';
+            if ($filter != null) {
+                $query .= ' and title like "%' . $filter . '%"';
             }
-            $query .= ' limit '.$limit.' offset '.(($pageIndex - 1) * $limit);
+            $query .= ' limit ' . $limit . ' offset ' . (($pageIndex - 1) * $limit);
             $news = DB::select($query);
         }
-        return response()->json(['page'=>$pageIndex, 'pageSize'=>$limit, 'totalRecord'=>$totalRecord, 'data'=>$news], 200);
+        return response()->json(['page' => $pageIndex, 'pageSize' => $limit, 'totalRecord' => $totalRecord, 'data' => $news], 200);
     }
 
     /**
@@ -62,12 +62,12 @@ class NewsApi extends Controller
         $new = [
             'title' => $request->title,
             'shortDescription' => $request->shortDescription,
-            'category_id'=>$request->category_id,
-            'content'=>$request->contents
+            'category_id' => $request->category_id,
+            'content' => $request->contents
         ];
-        if ($request->has('image_base64') && $request->has('image_name')){
+        if ($request->has('image_base64') && $request->has('image_name')) {
             $imageName = $this->saveBase64($request->image_base64, $request->image_name, 'thumbnail');
-            if ($imageName != null){
+            if ($imageName != null) {
                 $new['image'] = $imageName;
             }
         }
@@ -101,7 +101,7 @@ class NewsApi extends Controller
             ->get();
         if (sizeof($categories) > 0)
             return response()->json($categories[0], 200);
-        return response(['errorCode' => 404,'message'=>'Thể loại không tồn tại', 'time'=>time()], 404);
+        return response(['errorCode' => 404, 'message' => 'Thể loại không tồn tại', 'time' => time()], 404);
     }
 
     /**
@@ -116,12 +116,12 @@ class NewsApi extends Controller
             'id' => $request->id,
             'title' => $request->title,
             'shortDescription' => $request->shortDescription,
-            'category_id'=>$request->category_id,
-            'content'=>$request->contents
+            'category_id' => $request->category_id,
+            'content' => $request->contents
         ];
-        if ($request->has('image_base64') && $request->has('image_name')){
+        if ($request->has('image_base64') && $request->has('image_name')) {
             $imageName = $this->saveBase64($request->image_base64, $request->image_name, 'thumbnail');
-            if ($imageName != null){
+            if ($imageName != null) {
                 $new['image'] = $imageName;
             }
         }
@@ -150,12 +150,12 @@ class NewsApi extends Controller
     {
         $ids = $request->request->all();
         try {
-            if (isset($ids) && is_array($ids)){
-                foreach ($ids as $id){
+            if (isset($ids) && is_array($ids)) {
+                foreach ($ids as $id) {
                     $this->news->find($id)->delete();
                 }
                 $response = ['errorCode' => 200, 'message' => 'Xóa thành công', 'time' => now()];
-            }else{
+            } else {
                 $response = ['errorCode' => 400, 'message' => 'Có lỗi xảy ra, vui lòng thử lại', 'time' => now()];
             }
         } catch (\Exception $exception) {
@@ -165,15 +165,16 @@ class NewsApi extends Controller
         return response()->json($response, $response['errorCode']);
     }
 
-    public function saveBase64($base64, $imageName, $folder){
-        if($base64 == null || $imageName == null)
+    public function saveBase64($base64, $imageName, $folder)
+    {
+        if ($base64 == null || $imageName == null)
             return null;
         try {
             $base64 = str_replace(' ', '+', $base64);
-            $imageName = $folder.'/'.Str::random(10).$imageName.'.png';
+            $imageName = $folder . '/' . Str::random(10) . $imageName . '.png';
             Storage::disk('public')->put($imageName, base64_decode($base64));
-            return '/storage/'.$imageName;
-        }catch (\Exception $exception){
+            return '/storage/' . $imageName;
+        } catch (\Exception $exception) {
             return null;
         }
     }

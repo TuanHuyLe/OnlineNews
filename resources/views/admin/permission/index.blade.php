@@ -1,17 +1,17 @@
 @extends('layouts.admin')
 
 @section('title')
-    <title>Quản lý thể loại</title>
+    <title>Quản lý phân quyền</title>
 @endsection
 
 @section('script')
     <script src="{{ asset('js/common/common.js') }}"></script>
     <script src="{{ asset('js/admin/base.js') }}"></script>
-    <script src="{{ asset('js/admin/category.js') }}"></script>
+    <script src="{{ asset('js/admin/permission.js') }}"></script>
 @endsection
 
 @section('content')
-    @include('partials.admin.content-header', ['name'=>'Quản lý thể loại', 'key'=>'Danh sách', 'url'=>route('categories.index')])
+    @include('partials.admin.content-header', ['name'=>'Quản lý phân quyền', 'key'=>'Danh sách', 'url'=>route('categories.index')])
 
     <div class="row" style="height: calc(100vh - 205px);">
         <div class="col-lg-12">
