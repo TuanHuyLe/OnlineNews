@@ -92,7 +92,7 @@ Route::middleware('api')->prefix('v1')->namespace('Api\Admin')->group(function (
  * api/v1/[entity]
  * CreatedBy: LHTUAN (04/11/2020)
  */
-Route::middleware('api')->prefix('v2')->namespace('Api\Web')->group(function () {
+Route::middleware('api')->prefix('web/v1')->namespace('Api\Web')->group(function () {
     Route::prefix('news')->group(function () {
         Route::get('/', [
             'as' => 'news.read',

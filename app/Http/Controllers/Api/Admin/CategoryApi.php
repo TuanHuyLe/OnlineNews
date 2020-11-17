@@ -142,7 +142,9 @@ class CategoryApi extends Controller
         $ids = $request->request->all();
         try {
             if (isset($ids) && is_array($ids)){
-                $this->category->where('id', $ids)->delete();
+                foreach ($ids as $id){
+                    $this->category->find($id)->delete();
+                }
                 $response = ['errorCode' => 200, 'message' => 'Xóa thành công', 'time' => now()];
             }else{
                 $response = ['errorCode' => 400, 'message' => 'Có lỗi xảy ra, vui lòng thử lại', 'time' => now()];
