@@ -53,11 +53,25 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 
     Route::get('/categories', [
        'as' => 'categories.index',
-       'uses' => 'AdminCategoryController@index'
+       'uses' => 'AdminCategoryController@index',
+        'middleware' => 'can:view_category'
     ]);
 
     Route::get('/news', [
        'as' => 'news.index',
-       'uses' => 'AdminNewController@index'
+       'uses' => 'AdminNewController@index',
+        'middleware' => 'can:view_new'
+    ]);
+
+    Route::get('/roles', [
+       'as' => 'roles.index',
+       'uses' => 'AdminRoleController@index',
+        'middleware' => 'can:view_role'
+    ]);
+
+    Route::get('/users', [
+       'as' => 'users.index',
+       'uses' => 'AdminUserController@index',
+        'middleware' => 'can:view_member'
     ]);
 });

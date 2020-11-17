@@ -41,7 +41,7 @@ class NewsApi extends Controller
         else if (!is_numeric($pageIndex) || !is_numeric($limit))
             return response(['errorCode' => 400, 'message' => 'Data invalid!', 'time' => now()], 400);
         else {
-            $query = 'SELECT n.id, title, c.name as category, shortDescription, n.created_at, n.updated_at FROM news n left join categories c on n.category_id = c.id WHERE deleted_at IS NULL';
+            $query = 'SELECT n.id, title, c.name as category, shortDescription, n.created_at, n.updated_at FROM news n left join categories c on n.category_id = c.id WHERE n.deleted_at IS NULL';
             if ($filter != null){
                 $query .= ' and title like "%'.$filter.'%"';
             }
@@ -151,7 +151,8 @@ class NewsApi extends Controller
         $ids = $request->request->all();
         try {
             if (isset($ids) && is_array($ids)){
-                $this->news->where('id', $ids)->delete();
+                foreach ($ids as $id)
+                    $this->news->find($id)->delete();
                 $response = ['errorCode' => 200, 'message' => 'Xóa thành công', 'time' => now()];
             }else{
                 $response = ['errorCode' => 400, 'message' => 'Có lỗi xảy ra, vui lòng thử lại', 'time' => now()];

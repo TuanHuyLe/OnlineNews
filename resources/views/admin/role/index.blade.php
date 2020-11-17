@@ -1,17 +1,32 @@
 @extends('layouts.admin')
 
 @section('title')
-    <title>Quản lý thể loại</title>
+    <title>Quản lý vai trò</title>
+@endsection
+
+@section('css')
+    <link href="{{ asset('blog_admin/select2/select2.min.css') }}" rel="stylesheet"/>
+    <style>
+        .select2{
+            width: 100% !important;
+        }
+        .select2-selection{
+            height: 36.53px;
+            line-height: 25px;
+            padding-left: 0.4em;
+        }
+    </style>
 @endsection
 
 @section('script')
+    <script src="{{ asset('blog_admin/select2/select2.min.js') }}"></script>
     <script src="{{ asset('js/common/common.js') }}"></script>
     <script src="{{ asset('js/admin/base.js') }}"></script>
-    <script src="{{ asset('js/admin/category.js') }}"></script>
+    <script src="{{ asset('js/admin/role.js') }}"></script>
 @endsection
 
 @section('content')
-    @include('partials.admin.content-header', ['name'=>'Quản lý thể loại', 'key'=>'Danh sách', 'url'=>route('categories.index')])
+    @include('partials.admin.content-header', ['name'=>'Quản lý vai trò', 'key'=>'Danh sách', 'url'=>route('roles.index')])
 
     <div class="row" style="height: calc(100vh - 205px);">
         <div class="col-lg-12">
@@ -57,8 +72,8 @@
                         <thead>
                         <tr keyId="id">
                             <th style="width: 60px" fieldname="id">Id</th>
-                            <th fieldname="name">Tên danh mục</th>
-                            <th fieldname="description">Mô tả</th>
+                            <th fieldname="name">Quyền hạn</th>
+                            <th fieldname="code">Mã</th>
                             <th fieldname="created_at" format="date">Ngày tạo</th>
                             <th fieldname="updated_at" format="date">Ngày sửa gần nhất</th>
                         </tr>
@@ -119,12 +134,31 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="txtUsername">Tên thể loại</label>
-                                        <input type="text" name="name" placeholder="Nhập tên thể loại" class="form-control" />
+                                        <label>Tên vai trò</label>
+                                        <input type="text" name="name" placeholder="Nhập tên quyền hạn" class="form-control" />
                                     </div>
                                     <div class="form-group">
-                                        <label for="txtEmail">Mô tả</label>
-                                        <textarea class="form-control" placeholder="Nhập mô tả" name="description" rows="3"></textarea>
+                                        <label>Mã vai trò</label>
+                                        <input type="text" name="code" placeholder="Nhập mã quyền hạn" class="form-control" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Chức năng</label>
+                                        <div class="card" style="border: 1px solid #ccc; border-radius: .25rem;">
+                                            <div class="card-header" style="border-bottom: 1px solid #ccc;">
+                                                <div class="form-check" style="line-height: 22px;">
+                                                    <input type="checkbox" class="cb-all form-check-input" id="exampleCheck1">
+                                                    <label class="form-check-label" for="exampleCheck1">
+                                                        Chọn tất cả
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

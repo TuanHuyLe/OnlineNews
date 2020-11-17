@@ -44,6 +44,13 @@ td{
     border-radius: .25rem;
     margin-left: 4px;
 }
+.span-number-text{
+    padding: 0 5px;
+    line-height: 35px;
+    border: 1px solid #74788d;
+    border-radius: .25em;
+    margin-right: 3.5px;
+}
 .right-paging{
     position: absolute;
     top:21px;
