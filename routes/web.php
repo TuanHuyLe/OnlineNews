@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/admin', 'Admin\AdminController@loginAdmin')->name('login');
+Route::get('/login', 'Admin\AdminController@loginAdmin')->name('login');
 Route::post('/admin', 'Admin\AdminController@authenticate')->name('authenticate');
 Route::get('/logout', 'Admin\AdminController@logout')->name('logout');
 

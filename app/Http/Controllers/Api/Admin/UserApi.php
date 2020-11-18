@@ -44,7 +44,7 @@ class UserApi extends Controller
             if ($code != null){
                 $query .= ' and email like "%'.$code.'%"';
             }
-            $query .= ' limit '.$limit.' offset '.(($pageIndex - 1) * $limit);
+            $query .= ' order by created_at desc limit '.$limit.' offset '.(($pageIndex - 1) * $limit);
             $users = DB::select($query);
         }
         return response()->json(['page'=>$pageIndex, 'pageSize'=>$limit, 'totalRecord'=>$totalRecord, 'data'=>$users], 200);

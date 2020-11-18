@@ -19,16 +19,25 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-7">
-                            <button id="btn-add" title="Thêm mới" class="btn btn-success waves-effect waves-light">
-                                <i class="far fa-plus-square"></i> Thêm mới
-                            </button>
-                            <button id="btn-edit" disabled title="chỉnh sửa" class="btn btn-warning waves-effect waves-light">
-                                <i class="fas fa-edit"></i> Chỉnh sửa
-                            </button>
-                            <button id="btn-delete" disabled title="xóa" data-url="#" class="btn_delete btn btn-danger waves-effect waves-light">
-                                <i class="far fa-trash-alt"></i> Xóa
-                            </button>
-                            <input id="display-dialog" type="hidden" data-toggle="modal" data-target=".bs-example-modal-center" />
+                            @can('add_category')
+                                <button id="btn-add" title="Thêm mới" class="btn btn-success waves-effect waves-light">
+                                    <i class="far fa-plus-square"></i> Thêm mới
+                                </button>
+                            @endcan
+                            @can('edit_category')
+                                <button id="btn-edit" disabled title="chỉnh sửa"
+                                        class="btn btn-warning waves-effect waves-light">
+                                    <i class="fas fa-edit"></i> Chỉnh sửa
+                                </button>
+                            @endcan
+                            @can('delete_category')
+                                <button id="btn-delete" disabled title="xóa" data-url="#"
+                                        class="btn_delete btn btn-danger waves-effect waves-light">
+                                    <i class="far fa-trash-alt"></i> Xóa
+                                </button>
+                            @endcan
+                            <input id="display-dialog" type="hidden" data-toggle="modal"
+                                   data-target=".bs-example-modal-center"/>
                         </div>
                         <div class="col-md-5">
                             <form>
@@ -36,7 +45,7 @@
                                     <div class="col-md-3"></div>
                                     <div class="col-md-6">
                                         <input id="seach"
-                                               placeholder="Nhập tên"
+                                               placeholder="Nhập thể loại"
                                                class="form-control"/>
                                     </div>
                                     <div class="col-md-3">
@@ -105,7 +114,8 @@
     </div>
 
     <div class="col-sm-6 col-md-4 col-xl-3">
-        <div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -120,18 +130,21 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="txtUsername">Tên thể loại</label>
-                                        <input type="text" name="name" placeholder="Nhập tên thể loại" class="form-control" />
+                                        <input type="text" name="name" placeholder="Nhập tên thể loại"
+                                               class="form-control"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="txtEmail">Mô tả</label>
-                                        <textarea class="form-control" placeholder="Nhập mô tả" name="description" rows="3"></textarea>
+                                        <textarea class="form-control" placeholder="Nhập mô tả" name="description"
+                                                  rows="3"></textarea>
                                     </div>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button id="btn-cancel" data-dismiss="modal" title="hủy bỏ" class="btn btn-danger waves-effect waves-light">
+                        <button id="btn-cancel" data-dismiss="modal" title="hủy bỏ"
+                                class="btn btn-danger waves-effect waves-light">
                             <i class="fas fa-times"></i> Hủy bỏ
                         </button>
                         <button id="btn-save" title="lưu" class="btn btn-primary waves-effect waves-light">

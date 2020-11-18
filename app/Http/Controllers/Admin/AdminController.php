@@ -14,15 +14,15 @@ class AdminController extends Controller
 
     public function loginAdmin()
     {
-        if (auth()->check()) {
-            return redirect()->route('admin.home');
-        }
+//        if (auth()->check()) {
+//            return redirect()->route('admin.home');
+//        }
         return view('login');
     }
 
     public function logout(){
         Auth::logout();
-        return redirect()->route('home');
+        return redirect()->route('login');
     }
 
     public function authenticate(Request $request)
@@ -32,7 +32,7 @@ class AdminController extends Controller
             'email' => $request->email,
             'password' => $request->password
         ], $remember)) {
-            return redirect()->route('admin.home');
+            return redirect()->route('categories.index');
         }
         return view('login');
     }

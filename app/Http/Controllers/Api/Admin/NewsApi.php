@@ -35,7 +35,7 @@ class NewsApi extends Controller
         $pageIndex = $request['page'];
         $limit = $request['pageSize'];
         $filter = $request['filter'];
-        $totalRecord = $this->news->where('id', 'like', '%' . $filter . '%')->count();
+        $totalRecord = $this->news->where('title', 'like', '%'.$filter.'%')->count();
         if (!isset($pageIndex) || !isset($limit))
             $news = $this->news->all('id', 'name', 'description', 'created_at', 'updated_at');
         else if (!is_numeric($pageIndex) || !is_numeric($limit))
