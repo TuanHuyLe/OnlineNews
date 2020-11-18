@@ -180,6 +180,8 @@ return [
         UniSharp\LaravelFilemanager\LaravelFilemanagerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
 
+        // Other service providers…
+        Laravel\Socialite\SocialiteServiceProvider::class,
     ],
 
     /*
@@ -233,6 +235,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
 
+        // Other aliases…
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ],
 
 ];

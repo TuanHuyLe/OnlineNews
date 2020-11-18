@@ -53,6 +53,7 @@
 <script src="{{asset('web/constants.js')}}"></script>
 <script src="{{asset('web/news.js')}}"></script>
 <script src="{{asset('web/searchNews.js')}}"></script>
+<script src="{{asset('web/loadMenuCategories.js')}}"></script>
 <script src="{{asset('web/readMoreNews.js')}}"></script>
 </body>
 

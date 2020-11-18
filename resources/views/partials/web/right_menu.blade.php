@@ -19,12 +19,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-lg-6">
-                    <ul class="list-unstyled mb-0">
-                        @foreach($categoryItems as $item)
-                            <li>
-                                <a class="category-news" id="{{$item->id}}" data-code="{{$item->code}}" href="{{$item->code}}">{{$item->name}}</a>
-                            </li>
-                        @endforeach
+                    <ul class="list-unstyled mb-0" id="data-menu-category">
                     </ul>
                 </div>
             </div>

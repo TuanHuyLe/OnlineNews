@@ -34,17 +34,17 @@ class CategoryApi extends Controller
         $pageIndex = $request['page'];
         $limit = $request['pageSize'];
         $code = $request['filter'];
-        $totalRecord = $this->category->where('code', 'like', '%'.$code.'%')->count();
+        $totalRecord = $this->category->where('code', 'like', '%' . $code . '%')->count();
         if (!isset($pageIndex) || !isset($limit))
             $categories = $this->category->all('id', 'name', 'description', 'created_at', 'updated_at');
         else if (!is_numeric($pageIndex) || !is_numeric($limit))
             return response(['errorCode' => 400, 'message' => 'Data invalid!', 'time' => now()], 400);
         else {
             $query = 'select id, name, code, created_at, updated_at, description from categories where deleted_at is null';
-            if ($code != null){
-                $query .= ' and code like "%'.$code.'%"';
+            if ($code != null) {
+                $query .= ' and code like "%' . $code . '%"';
             }
-            $query .= ' limit '.$limit.' offset '.(($pageIndex - 1) * $limit);
+            $query .= ' limit ' . $limit . ' offset ' . (($pageIndex - 1) * $limit);
 //            $categories = $this->category->all('id', 'name', 'description', 'created_at', 'updated_at')
 //                ->sortByDesc('created_at')
 //                ->skip(($pageIndex - 1) * $limit)
@@ -52,7 +52,7 @@ class CategoryApi extends Controller
 //                ->values();
             $categories = DB::select($query);
         }
-        return response()->json(['page'=>$pageIndex, 'pageSize'=>$limit, 'totalRecord'=>$totalRecord, 'data'=>$categories], 200);
+        return response()->json(['page' => $pageIndex, 'pageSize' => $limit, 'totalRecord' => $totalRecord, 'data' => $categories], 200);
     }
 
     /**
@@ -63,7 +63,7 @@ class CategoryApi extends Controller
      */
     public function store(Request $request)
     {
-        $category = ['name' => $request->name, 'code' => Str::slug($request->name), 'description'=>$request->description ];
+        $category = ['name' => $request->name, 'code' => Str::slug($request->name), 'description' => $request->description];
         $count = $this->category->where('code', $category['code'])->count();
         if ($count > 0) {
             $response = ['errorCode' => 400, 'message' => 'Thể loại đã tồn tại trong hệ thống', 'time' => now()];
@@ -95,7 +95,7 @@ class CategoryApi extends Controller
         $categories = $this->category->select('id', 'name', 'description')->where('id', $id)->get();
         if (sizeof($categories) > 0)
             return response()->json($categories[0], 200);
-        return response(['errorCode' => 404,'message'=>'Thể loại không tồn tại', 'time'=>time()], 404);
+        return response(['errorCode' => 404, 'message' => 'Thể loại không tồn tại', 'time' => time()], 404);
     }
 
     /**
@@ -109,7 +109,7 @@ class CategoryApi extends Controller
         $category = [
             'id' => $request->id,
             'name' => $request->name, 'code' => Str::slug($request->name),
-            'description'=>$request->description
+            'description' => $request->description
         ];
         $categories = $this->category->where('code', $category['code'])->get();
         if (sizeof($categories) > 0 && $categories[0]->id != $category['id']) {
@@ -141,11 +141,12 @@ class CategoryApi extends Controller
     {
         $ids = $request->request->all();
         try {
-            if (isset($ids) && is_array($ids)){
-                foreach ($ids as $id)
+            if (isset($ids) && is_array($ids)) {
+                foreach ($ids as $id) {
                     $this->category->find($id)->delete();
+                }
                 $response = ['errorCode' => 200, 'message' => 'Xóa thành công', 'time' => now()];
-            }else{
+            } else {
                 $response = ['errorCode' => 400, 'message' => 'Có lỗi xảy ra, vui lòng thử lại', 'time' => now()];
             }
         } catch (\Exception $exception) {
@@ -159,7 +160,8 @@ class CategoryApi extends Controller
      * Lấy danh sách thể loại
      * CreatedBy: LTQUAN (11/11/2020)
      */
-    public function list(){
+    public function list()
+    {
         $categories = Category::all('id', 'name');
         return response()->json($categories, 200);
     }

@@ -83,7 +83,7 @@ const news = {
                     // set paginate
                     news.paging(res.total, () => news.loadData());
                 } else {
-                    $('.root').html('<h2>Dữ liệu trống</h2><br><p>' + res.message + '</p>');
+                    $('.root').html('<h2>' + res.message + '</h2>');
                 }
             }
         }).always(() => loadingAnimation.onHideLoading());
@@ -120,7 +120,7 @@ const news = {
          * catch event click category
          * @Author LHTUAN (05/11/2020)
          */
-        $('.category-news').off('click').on('click', function (e) {
+        $(document).on('click', '.category-news', function (e) {
             e.preventDefault();
             $('#pagination').twbsPagination('destroy');
             let code = $(this).data(constants.code);

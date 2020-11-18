@@ -14,10 +14,10 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "^7.24",
+        "laravel/socialite": "^5.1",
         "laravel/tinker": "^2.0",
-        "unisharp/laravel-filemanager": "^2.1",
-        "doctrine/dbal": "v2.4.2",
-        "mustache/mustache": "~2.5"
+        "mustache/mustache": "~2.5",
+        "unisharp/laravel-filemanager": "^2.1"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

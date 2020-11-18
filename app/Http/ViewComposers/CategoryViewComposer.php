@@ -8,6 +8,6 @@ class CategoryViewComposer
 {
     public function compose($view)
     {
-        $view->with('categoryItems', Category::all());
+//        $view->with('categoryItems', Category::all());
     }
 }
